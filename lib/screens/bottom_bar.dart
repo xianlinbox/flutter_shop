@@ -55,7 +55,8 @@ class _BottomBarState extends State<BottomBar> {
               tooltip: 'Feeds'
               ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              activeIcon: Icon(null),
+              icon: Icon(null),
               label: 'Search',
               tooltip: 'Search'
               ),
@@ -71,7 +72,19 @@ class _BottomBarState extends State<BottomBar> {
               ),
           ]
           ),
-      )
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple,
+        elevation: 5,
+        tooltip: 'Search',
+        onPressed: () {
+          setState(() {
+            _selectedPageIndex = 2;
+          });
+        },
+        child: const Icon(Icons.search),
+        ),
     );
   }
 }

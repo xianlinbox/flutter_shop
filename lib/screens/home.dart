@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Home', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),),
+        child: Text('Home', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800)),
       ),
     );
   }
