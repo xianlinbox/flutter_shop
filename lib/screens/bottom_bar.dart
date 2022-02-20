@@ -39,6 +39,7 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
+          currentIndex: _selectedPageIndex,
           onTap: selectPage,
           backgroundColor: Theme.of(context).primaryColor,
           selectedItemColor: Colors.black,
