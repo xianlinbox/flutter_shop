@@ -62,6 +62,8 @@ class _BottomBarState extends State<BottomBar> {
         title: Text(_pages[_selectedPageIndex]["title"] as String),
       ),
       bottomNavigationBar: BottomAppBar(
+        notchMargin: 3,
+        clipBehavior: Clip.antiAlias,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
           currentIndex: _selectedPageIndex,
