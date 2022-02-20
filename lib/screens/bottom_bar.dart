@@ -16,13 +16,35 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final List _pages = [
-    const Home(),
-    const Feeds(),
-    const Search(),
-    const Cart(),
-    const UserInfo()    
-  ];
+  late List<Map<String, Object>> _pages;
+
+  @override
+  void initState() {
+    _pages = [
+      {
+        "page": const Home(),
+        "title": "Home"
+      },
+      {
+        "page": const Feeds(),
+        "title": "Feeds"
+      },
+      {
+        "page": const Search(),
+        "title": "Seach"
+      },
+      {
+        "page": const Cart(),
+        "title": "Cart"
+      },
+      {
+        "page": const UserInfo(),
+        "title": "Users"
+      }
+    ];
+    super.initState();
+  }
+
   int _selectedPageIndex = 0;
 
   void selectPage(int index) {
@@ -35,7 +57,10 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedPageIndex],
+      body: _pages[_selectedPageIndex]["page"] as Widget,
+      appBar: AppBar(
+        title: Text(_pages[_selectedPageIndex]["title"] as String),
+      ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
