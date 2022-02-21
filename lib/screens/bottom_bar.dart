@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/screens/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';
@@ -73,12 +74,12 @@ class _BottomBarState extends State<BottomBar> {
           unselectedItemColor: Colors.purple,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(FontAwesome5.home),
               label: 'Home',
               tooltip: 'Home'
               ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.rss_feed),
+              icon: Icon(FontAwesome5.rss),
               label: 'Feeds',
               tooltip: 'Feeds'
               ),
@@ -89,12 +90,12 @@ class _BottomBarState extends State<BottomBar> {
               tooltip: 'Search'
               ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: Icon(FontAwesome5.shopping_cart),
               label: 'Cart',
               tooltip: 'Cart'
               ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(FontAwesome5.user),
               label: 'User',
               tooltip: 'User'
               ),
@@ -111,7 +112,7 @@ class _BottomBarState extends State<BottomBar> {
             _selectedPageIndex = 2;
           });
         },
-        child: const Icon(Icons.search),
+        child: const Icon(FontAwesome5.search),
         ),
     );
   }
