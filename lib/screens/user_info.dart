@@ -8,7 +8,10 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          title('User Info'),
           userListTile('Email', 'empty', AppIcons.email, context),
           userListTile('Phone Number', '3124589888', AppIcons.phone, context),
           userListTile(
@@ -17,6 +20,13 @@ class UserInfo extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget title(String title) {
+    return Padding(
+        padding: const EdgeInsets.all(8),
+        child: Text(title,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)));
   }
 
   Widget userListTile(
