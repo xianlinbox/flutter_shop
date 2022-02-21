@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/shared/AppIcons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/screens/feeds.dart';
@@ -72,30 +73,30 @@ class _BottomBarState extends State<BottomBar> {
           backgroundColor: Theme.of(context).primaryColor,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.purple,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(FontAwesome5.home),
+              icon: Icon(AppIcons.home),
               label: 'Home',
               tooltip: 'Home'
               ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesome5.rss),
+              icon: Icon(AppIcons.feeds),
               label: 'Feeds',
               tooltip: 'Feeds'
               ),
-            BottomNavigationBarItem(
-              activeIcon: Icon(null),
+            const BottomNavigationBarItem(
+              activeIcon: null,
               icon: Icon(null),
               label: 'Search',
               tooltip: 'Search'
               ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesome5.shopping_cart),
+              icon: Icon(AppIcons.cart),
               label: 'Cart',
               tooltip: 'Cart'
               ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesome5.user),
+              icon: Icon(AppIcons.user),
               label: 'User',
               tooltip: 'User'
               ),
@@ -112,7 +113,7 @@ class _BottomBarState extends State<BottomBar> {
             _selectedPageIndex = 2;
           });
         },
-        child: const Icon(FontAwesome5.search),
+        child: Icon(AppIcons.search),
         ),
     );
   }
