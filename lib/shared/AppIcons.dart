@@ -7,5 +7,8 @@ class AppIcons {
   static IconData search = FontAwesome5.search;
   static IconData cart = FontAwesome5.shopping_cart;
   static IconData user = FontAwesome5.user;
-
+  static IconData email = FontAwesome5.envelope;
+  static IconData phone = FontAwesome5.phone;
+  static IconData shipping = FontAwesome5.truck;
+  static IconData date = FontAwesome5.calendar;
 }

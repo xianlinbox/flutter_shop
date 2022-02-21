@@ -47,7 +47,7 @@ class _BottomBarState extends State<BottomBar> {
     super.initState();
   }
 
-  int _selectedPageIndex = 0;
+  int _selectedPageIndex = 4;
 
   void selectPage(int index) {
     setState(() {
