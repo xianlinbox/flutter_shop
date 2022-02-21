@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:list_tile_switch/list_tile_switch.dart';
 import '../shared/AppIcons.dart';
 
-class UserInfo extends StatelessWidget {
+class UserInfo extends StatefulWidget {
   const UserInfo({Key? key}) : super(key: key);
+
+  @override
+  UserInfoState createState() => UserInfoState();
+}
+
+class UserInfoState extends State<UserInfo> {
+  bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +25,8 @@ class UserInfo extends StatelessWidget {
           userListTile(
               'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
           userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
+          title('User Settings'),
+          userListTileSwitch('Dark Mode', AppIcons.darkMode),
         ],
       ),
     );
@@ -42,6 +52,20 @@ class UserInfo extends StatelessWidget {
           onTap: () {},
         ),
       ),
+    );
+  }
+
+  Widget userListTileSwitch(String title, IconData icon) {
+    return ListTileSwitch(
+      value: _isDarkMode,
+      leading: Icon(icon),
+      onChanged: (value) {
+        setState(() {
+          _isDarkMode = value;
+        });
+      },
+      switchActiveColor: Colors.indigo,
+      title: Text(title),
     );
   }
 }

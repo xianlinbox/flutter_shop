@@ -11,4 +11,5 @@ class AppIcons {
   static IconData phone = FontAwesome5.phone;
   static IconData shipping = FontAwesome5.truck;
   static IconData date = FontAwesome5.calendar;
+  static IconData darkMode = FontAwesome5.sun;
 }
