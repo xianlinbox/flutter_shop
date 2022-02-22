@@ -11,24 +11,70 @@ class UserInfo extends StatefulWidget {
 
 class UserInfoState extends State<UserInfo> {
   bool _isDarkMode = false;
+  late ScrollController _scrollViewController;
+
+  @override
+  void initState() {
+    _scrollViewController = ScrollController();
+    _scrollViewController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          title('User Info'),
-          userListTile('Email', 'empty', AppIcons.email, context),
-          userListTile('Phone Number', '3124589888', AppIcons.phone, context),
-          userListTile(
-              'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
-          userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
-          title('User Settings'),
-          userListTileSwitch('Dark Mode', AppIcons.darkMode),
-        ],
-      ),
+      body: Stack(children: [
+        CustomScrollView(
+          controller: _scrollViewController,
+          slivers: [
+            SliverAppBar(
+              elevation: 4,
+              automaticallyImplyLeading: false,
+              expandedHeight: 200,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text(''),
+                background: Image.asset(
+                  'assets/images/user_info_bg.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(child: userInfoColumns(context))
+          ],
+        )
+      ]),
+    );
+  }
+
+  Widget userInfoColumns(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        title('User Info'),
+        userListTile('Email', 'empty', AppIcons.email, context),
+        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
+        userListTile(
+            'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
+        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
+        title('User Info'),
+        userListTile('Email', 'empty', AppIcons.email, context),
+        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
+        userListTile(
+            'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
+        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
+        title('User Info'),
+        userListTile('Email', 'empty', AppIcons.email, context),
+        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
+        userListTile(
+            'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
+        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
+        title('User Settings'),
+        userListTileSwitch('Dark Mode', AppIcons.darkMode),
+      ],
     );
   }
 
