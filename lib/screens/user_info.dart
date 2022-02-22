@@ -35,9 +35,9 @@ class UserInfoState extends State<UserInfo> {
               expandedHeight: 200,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(''),
+                title: const Text('Test'),
                 background: Image.asset(
-                  'assets/images/user_info_bg.png',
+                  'lib/assets/images/user_info_bg.png',
                   fit: BoxFit.cover,
                 ),
               ),
