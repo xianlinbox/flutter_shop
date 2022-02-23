@@ -42,11 +42,45 @@ class UserInfoState extends State<UserInfo> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: userInfoColumns(context))
+            SliverToBoxAdapter(child: userInfoColumns(context)),
           ],
-        )
+        ),
+        fabButton()
       ]),
     );
+  }
+
+  Widget fabButton() {
+    const double defaulTopMargin = 220;
+    const double scaleStart = 160;
+    const double scaleEnd = scaleStart / 2;
+
+    double top = defaulTopMargin;
+    double scale = 1;
+
+    if (_scrollViewController.hasClients) {
+      double offset = _scrollViewController.offset;
+      top -= offset;
+      if (offset < defaulTopMargin - scaleStart) {
+        scale = 1.0;
+      } else if (offset < defaulTopMargin - scaleEnd) {
+        scale = (defaulTopMargin - scaleEnd - offset) / scaleEnd;
+      } else {
+        scale = 0;
+      }
+    }
+    return Positioned(
+        top: top,
+        right: 16,
+        child: Transform(
+          transform: Matrix4.identity()..scale(scale),
+          alignment: Alignment.center,
+          child: FloatingActionButton(
+              heroTag: 'user_info_fab',
+              onPressed: () {},
+              backgroundColor: Colors.purple,
+              child: Icon(AppIcons.camera)),
+        ));
   }
 
   Widget userInfoColumns(BuildContext context) {
