@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/shared/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import '../shared/AppIcons.dart';
 
@@ -30,23 +31,69 @@ class UserInfoState extends State<UserInfo> {
           controller: _scrollViewController,
           slivers: [
             SliverAppBar(
-              elevation: 4,
-              automaticallyImplyLeading: false,
+              elevation: 0,
               expandedHeight: 200,
               pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text('Test'),
-                background: Image.asset(
-                  'lib/assets/images/user_info_bg.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+              flexibleSpace:
+                  LayoutBuilder(builder: sliverAppBarFlexSpaceBuilder),
             ),
             SliverToBoxAdapter(child: userInfoColumns(context)),
           ],
         ),
         fabButton()
       ]),
+    );
+  }
+
+  Widget sliverAppBarFlexSpaceBuilder(
+      BuildContext context, BoxConstraints constraints) {
+    var top = constraints.biggest.height;
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [
+              AppColors.starterColor,
+              AppColors.endColor,
+            ],
+            begin: const FractionalOffset(0.0, 0.0),
+            end: const FractionalOffset(1.0, 0.0),
+            stops: const [0.0, 1.0],
+            tileMode: TileMode.clamp),
+      ),
+      child: FlexibleSpaceBar(
+        centerTitle: true,
+        title: AnimatedOpacity(
+          opacity: top <= 110 ? 1 : 0,
+          duration: const Duration(milliseconds: 300),
+          child: Row(
+            children: [
+              const SizedBox(width: 12),
+              Container(
+                height: kToolbarHeight / 1.8,
+                width: kToolbarHeight / 1.8,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(color: AppColors.white, blurRadius: 1.0),
+                  ],
+                  shape: BoxShape.circle,
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                        'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Text('Guest',
+                  style: TextStyle(fontSize: 20, color: AppColors.white)),
+            ],
+          ),
+        ),
+        background: const Image(
+            image: NetworkImage(
+                'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'),
+            fit: BoxFit.fill),
+      ),
     );
   }
 
