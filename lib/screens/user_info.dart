@@ -160,10 +160,17 @@ class UserInfoState extends State<UserInfo> {
   }
 
   Widget title(String title) {
-    return Padding(
-        padding: const EdgeInsets.all(8),
-        child: Text(title,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)));
+    return Column(children: [
+      Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(title,
+              style:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold))),
+      Divider(
+        thickness: 1,
+        color: AppColors.grey,
+      ),
+    ]);
   }
 
   Widget userListTile(

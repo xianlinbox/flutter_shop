@@ -21,4 +21,5 @@ class AppColors {
   static Color gradiendLStart = Color(0xFF9C27B0); //purple 500
   static Color starterColor = Color(0xFF8E24AA); //purple 600
   static Color purple800 = Color(0xFF6A1B9A);
+  static Color grey = Colors.grey;
 }
