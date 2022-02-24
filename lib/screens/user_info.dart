@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:provider/provider.dart';
 import '../shared/app_icons.dart';
 
 class UserInfo extends StatefulWidget {
@@ -11,7 +13,6 @@ class UserInfo extends StatefulWidget {
 }
 
 class UserInfoState extends State<UserInfo> {
-  bool _isDarkMode = false;
   late ScrollController _scrollViewController;
 
   @override
@@ -131,6 +132,7 @@ class UserInfoState extends State<UserInfo> {
   }
 
   Widget userInfoColumns(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -154,10 +156,10 @@ class UserInfoState extends State<UserInfo> {
             'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
         userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
         title('User Settings'),
-        userListTileSwitch('Dark Mode', _isDarkMode, AppIcons.darkMode,
-            (value) {
+        userListTileSwitch(
+            'Dark Mode', themeChange.darkTheme, AppIcons.darkMode, (value) {
           setState(() {
-            _isDarkMode = value;
+            themeChange.darkTheme = value;
           });
         }),
       ],

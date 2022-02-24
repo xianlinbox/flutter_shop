@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
+import 'package:provider/provider.dart';
+import 'shared/theme_data.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const BottomBar(),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => themeChangeProvider),
+        ],
+        child: Consumer<DarkThemeProvider>(
+          builder: (context, darkThemeProvider, child) {
+            return MaterialApp(
+              title: 'Flutter Shop',
+              theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+              home: const BottomBar(),
+            );
+          },
+        ));
   }
 }
