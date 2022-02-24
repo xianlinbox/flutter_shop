@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/shared/AppIcons.dart';
+import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/screens/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';

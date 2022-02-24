@@ -17,7 +17,7 @@ class Styles {
         brightness: isDark ? Brightness.dark : Brightness.light,
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
             colorScheme: isDark ? ColorScheme.dark() : ColorScheme.light()),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           elevation: 0.0,
         ));
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
-import '../shared/AppIcons.dart';
+import '../shared/app_icons.dart';
 
 class UserInfo extends StatefulWidget {
   const UserInfo({Key? key}) : super(key: key);
