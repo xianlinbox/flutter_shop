@@ -4,6 +4,7 @@ import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/screens/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';
 import 'package:flutter_shop/screens/user_info.dart';
+import 'package:flutter_shop/shared/colors.dart';
 
 import 'home.dart';
 
@@ -44,31 +45,49 @@ class _BottomBarState extends State<BottomBar> {
     return Scaffold(
       body: _pages[_selectedPageIndex]["page"] as Widget,
       bottomNavigationBar: BottomAppBar(
-        notchMargin: 3,
-        clipBehavior: Clip.antiAlias,
-        shape: const CircularNotchedRectangle(),
-        child: BottomNavigationBar(
-            currentIndex: _selectedPageIndex,
-            onTap: selectPage,
-            backgroundColor: Theme.of(context).primaryColor,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.purple,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(AppIcons.home), label: 'Home', tooltip: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(AppIcons.feeds), label: 'Feeds', tooltip: 'Feeds'),
-              const BottomNavigationBarItem(
-                  activeIcon: null,
-                  icon: Icon(null),
-                  label: 'Search',
-                  tooltip: 'Search'),
-              BottomNavigationBarItem(
-                  icon: Icon(AppIcons.cart), label: 'Cart', tooltip: 'Cart'),
-              BottomNavigationBarItem(
-                  icon: Icon(AppIcons.user), label: 'User', tooltip: 'User'),
-            ]),
-      ),
+          notchMargin: 3,
+          clipBehavior: Clip.antiAlias,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
+              ),
+            ),
+            child: BottomNavigationBar(
+                currentIndex: _selectedPageIndex,
+                onTap: selectPage,
+                backgroundColor: Theme.of(context).primaryColor,
+                selectedItemColor: Colors.purple,
+                unselectedItemColor: AppColors.black,
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(AppIcons.home),
+                      label: 'Home',
+                      tooltip: 'Home'),
+                  BottomNavigationBarItem(
+                      icon: Icon(AppIcons.feeds),
+                      label: 'Feeds',
+                      tooltip: 'Feeds'),
+                  const BottomNavigationBarItem(
+                      activeIcon: null,
+                      icon: Icon(null),
+                      label: 'Search',
+                      tooltip: 'Search'),
+                  BottomNavigationBarItem(
+                      icon: Icon(AppIcons.cart),
+                      label: 'Cart',
+                      tooltip: 'Cart'),
+                  BottomNavigationBarItem(
+                      icon: Icon(AppIcons.user),
+                      label: 'User',
+                      tooltip: 'User'),
+                ]),
+          )),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
