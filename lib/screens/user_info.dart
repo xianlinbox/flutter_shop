@@ -154,23 +154,31 @@ class UserInfoState extends State<UserInfo> {
             'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
         userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
         title('User Settings'),
-        userListTileSwitch('Dark Mode', AppIcons.darkMode),
+        userListTileSwitch('Dark Mode', _isDarkMode, AppIcons.darkMode,
+            (value) {
+          setState(() {
+            _isDarkMode = value;
+          });
+        }),
       ],
     );
   }
 
   Widget title(String title) {
-    return Column(children: [
-      Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(title,
-              style:
-                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold))),
-      Divider(
-        thickness: 1,
-        color: AppColors.grey,
-      ),
-    ]);
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(title,
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold))),
+          Divider(
+            thickness: 1,
+            color: AppColors.grey,
+          ),
+        ]);
   }
 
   Widget userListTile(
@@ -189,16 +197,15 @@ class UserInfoState extends State<UserInfo> {
     );
   }
 
-  Widget userListTileSwitch(String title, IconData icon) {
+  Widget userListTileSwitch(
+      String title, bool value, IconData icon, Function(bool) onChange) {
     return ListTileSwitch(
-      value: _isDarkMode,
+      value: value,
       leading: Icon(icon),
-      onChanged: (value) {
-        setState(() {
-          _isDarkMode = value;
-        });
-      },
+      onChanged: onChange,
       switchActiveColor: Colors.indigo,
+      visualDensity: VisualDensity.comfortable,
+      switchType: SwitchType.cupertino,
       title: Text(title),
     );
   }
