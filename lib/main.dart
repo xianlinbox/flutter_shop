@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
+import 'package:flutter_shop/shared/models/dark_theme_preference.dart';
 import 'package:provider/provider.dart';
 import 'shared/theme_data.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
-  // This widget is the root of your application.
+  void initCurrentTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getDarkTheme();
+  }
+
+  @override
+  void initState() {
+    initCurrentTheme();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
