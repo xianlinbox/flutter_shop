@@ -26,12 +26,32 @@ class CartEmpty extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).textSelectionTheme.selectionColor)),
           const SizedBox(height: 20),
-          Text('Looks like you didn\'t add   anything to your cart yet.',
+          Text('Looks like you didn\'t add anything to your cart yet.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).disabledColor)),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.width * 0.1,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(color: Colors.red),
+                primary: Colors.redAccent,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+              ),
+              child: Text('Shopping Now',
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w600,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor)),
+            ),
+          )
         ]);
   }
 }
