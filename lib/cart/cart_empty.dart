@@ -10,7 +10,6 @@ class CartEmpty extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10),
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.4,
             decoration: const BoxDecoration(
@@ -35,7 +34,7 @@ class CartEmpty extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.width * 0.1,
+            height: MediaQuery.of(context).size.width * 0.15,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -45,6 +44,7 @@ class CartEmpty extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
               ),
               child: Text('Shopping Now',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w600,
