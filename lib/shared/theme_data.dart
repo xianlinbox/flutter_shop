@@ -15,6 +15,9 @@ class Styles {
         cardColor: isDark ? Color(0xFF151515) : Colors.white,
         canvasColor: isDark ? Colors.black : Colors.grey[50],
         brightness: isDark ? Brightness.dark : Brightness.light,
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: isDark ? Colors.white : Colors.black,
+        ),
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
             colorScheme: isDark ? ColorScheme.dark() : ColorScheme.light()),
         appBarTheme: const AppBarTheme(

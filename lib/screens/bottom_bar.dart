@@ -61,9 +61,10 @@ class _BottomBarState extends State<BottomBar> {
             child: BottomNavigationBar(
                 currentIndex: _selectedPageIndex,
                 onTap: selectPage,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).primaryColor,
                 selectedItemColor: Colors.purple,
-                unselectedItemColor: AppColors.black,
+                unselectedItemColor:
+                    Theme.of(context).textSelectionTheme.selectionColor,
                 items: [
                   BottomNavigationBarItem(
                       icon: Icon(AppIcons.home),
