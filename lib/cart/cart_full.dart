@@ -24,10 +24,32 @@ class _CartFullState extends State<CartFull> {
           ),
           color: Theme.of(context).backgroundColor,
         ),
-        child: Container(
-            child: Row(
-          children: const [Text("Cart"), Text("Cart")],
-        )),
+        child: Row(children: [
+          Container(
+            width: 130,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842712000'),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Flexible(
+            child: Column(
+              children: const [
+                Flexible(
+                  child: Text(
+                    "iphone XR",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ]),
       ),
     );
   }
