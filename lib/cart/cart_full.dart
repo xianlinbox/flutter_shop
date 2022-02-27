@@ -14,8 +14,20 @@ class _CartFullState extends State<CartFull> {
       appBar: AppBar(
         title: const Text('Cart'),
       ),
-      body: const Center(
-        child: Text('Cart'),
+      body: Container(
+        height: 130,
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(6),
+            bottomRight: Radius.circular(6),
+          ),
+          color: Theme.of(context).backgroundColor,
+        ),
+        child: Container(
+            child: Row(
+          children: const [Text("Cart"), Text("Cart")],
+        )),
       ),
     );
   }
