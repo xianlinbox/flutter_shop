@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/cart/cart_empty.dart';
+import 'package:flutter_shop/cart/cart.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/screens/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';
@@ -25,7 +25,7 @@ class _BottomBarState extends State<BottomBar> {
       {"page": const Home(), "title": "Home"},
       {"page": const Feeds(), "title": "Feeds"},
       {"page": const Search(), "title": "Seach"},
-      {"page": const CartEmpty(), "title": "Cart"},
+      {"page": const Cart(), "title": "Cart"},
       {"page": const UserInfo(), "title": "Users"}
     ];
     super.initState();
