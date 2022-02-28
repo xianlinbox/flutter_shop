@@ -83,6 +83,21 @@ class _CartFullState extends State<CartFull> {
                           fontWeight: FontWeight.w600,
                         )),
                   ],
+                ),
+                Row(
+                  children: const [
+                    Text(
+                      'Subtotal:',
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("\$500.00",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        )),
+                  ],
                 )
               ],
             ),
