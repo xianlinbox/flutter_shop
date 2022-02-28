@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/shared/colors.dart';
+import 'package:fluttericon/entypo_icons.dart';
 import 'package:provider/provider.dart';
 
 class CartFull extends StatefulWidget {
@@ -29,7 +31,7 @@ class _CartFullState extends State<CartFull> {
         ),
         child: Row(children: [
           Container(
-            width: 130,
+            width: 140,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
@@ -103,6 +105,63 @@ class _CartFullState extends State<CartFull> {
                               ? Colors.brown.shade900
                               : Theme.of(context).colorScheme.secondary,
                         )),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('Ships free',
+                        style: TextStyle(
+                            color: themeChange.darkTheme
+                                ? Colors.brown.shade900
+                                : Theme.of(context).colorScheme.secondary)),
+                    const Spacer(),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(32.0),
+                        onTap: () {},
+                        child: const SizedBox(
+                          child: Icon(
+                            Entypo.minus,
+                            color: Colors.red,
+                            size: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      elevation: 12,
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                          AppColors.gradiendLStart,
+                          AppColors.gradiendLEnd
+                        ], stops: const [
+                          0.0,
+                          1.0
+                        ])),
+                        child: const Text(
+                          '1',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(32.0),
+                        onTap: () {},
+                        child: const SizedBox(
+                          child: Icon(
+                            Entypo.plus,
+                            color: Colors.red,
+                            size: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],
