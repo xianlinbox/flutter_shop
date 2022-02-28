@@ -68,7 +68,22 @@ class _CartFullState extends State<CartFull> {
                           ),
                         ),
                       ),
-                    ])
+                    ]),
+                Row(
+                  children: const [
+                    Text(
+                      'Price:',
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("\$500.00",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        )),
+                  ],
+                )
               ],
             ),
           )),
