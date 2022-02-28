@@ -101,7 +101,7 @@ class _CartFullState extends State<CartFull> {
                           fontWeight: FontWeight.w600,
                           color: themeChange.darkTheme
                               ? Colors.brown.shade900
-                              : Theme.of(context).primaryColor,
+                              : Theme.of(context).colorScheme.secondary,
                         )),
                   ],
                 )
