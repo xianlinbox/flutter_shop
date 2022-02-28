@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CartFull extends StatefulWidget {
   const CartFull({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class CartFull extends StatefulWidget {
 class _CartFullState extends State<CartFull> {
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
@@ -77,7 +80,7 @@ class _CartFullState extends State<CartFull> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("\$500.00",
+                    Text("500\$",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -85,17 +88,20 @@ class _CartFullState extends State<CartFull> {
                   ],
                 ),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Subtotal:',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text("\$500.00",
+                    Text('500\$',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
+                          color: themeChange.darkTheme
+                              ? Colors.brown.shade900
+                              : Theme.of(context).primaryColor,
                         )),
                   ],
                 )
