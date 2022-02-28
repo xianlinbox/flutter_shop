@@ -36,19 +36,42 @@ class _CartFullState extends State<CartFull> {
             ),
           ),
           Flexible(
+              child: Padding(
+            padding: const EdgeInsets.all(5),
             child: Column(
-              children: const [
-                Flexible(
-                  child: Text(
-                    "iphone XR",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                ),
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Flexible(
+                        child: Text(
+                          "iphone XR",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(32.0),
+                          onTap: () {},
+                          child: const SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                              size: 22,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ])
               ],
             ),
-          )
+          )),
         ]),
       ),
     );
