@@ -20,7 +20,7 @@ class _CartFullState extends State<CartFull> {
         title: const Text('Cart'),
       ),
       body: Container(
-        height: 130,
+        height: 140,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
@@ -107,13 +107,12 @@ class _CartFullState extends State<CartFull> {
                         )),
                   ],
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Row(
                   children: [
-                    Text('Ships free',
-                        style: TextStyle(
-                            color: themeChange.darkTheme
-                                ? Colors.brown.shade900
-                                : Theme.of(context).colorScheme.secondary)),
+                    const Text('Ships free'),
                     const Spacer(),
                     Material(
                       color: Colors.transparent,
@@ -156,7 +155,7 @@ class _CartFullState extends State<CartFull> {
                         child: const SizedBox(
                           child: Icon(
                             Entypo.plus,
-                            color: Colors.red,
+                            color: Colors.green,
                             size: 22,
                           ),
                         ),
