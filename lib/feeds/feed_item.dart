@@ -12,7 +12,7 @@ class _FeedItemState extends State<FeedItem> {
   Widget build(BuildContext context) {
     return Container(
       width: 250,
-      height: 390,
+      height: 350,
       decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
           borderRadius: BorderRadius.circular(6)),
@@ -38,8 +38,11 @@ class _FeedItemState extends State<FeedItem> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-            const Text('\$999.99',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text('\$999.99',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
