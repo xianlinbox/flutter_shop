@@ -20,6 +20,41 @@ class Cart extends StatelessWidget {
                 onPressed: () {},
               ),
             ]),
-            body: const CartFull());
+            body: const CartFull(),
+            bottomSheet: _checkoutSection(context),
+          );
+  }
+
+  Widget _checkoutSection(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        border: const Border(top: BorderSide(color: Colors.grey, width: 1)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Material(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.red,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(30),
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text('Checkout',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor)),
+              ),
+            ),
+          ),
+          const Text("Total: \$0.00"),
+        ],
+      ),
+    );
   }
 }
