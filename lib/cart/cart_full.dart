@@ -15,8 +15,8 @@ class _CartFullState extends State<CartFull> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
-    return Scaffold(
-      body: Container(
+    return InkWell(
+      child: Container(
         height: 140,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
