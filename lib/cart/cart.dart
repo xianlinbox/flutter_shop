@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart_empty.dart';
 import 'package:flutter_shop/cart/cart_full.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
+import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 
 class Cart extends StatelessWidget {
@@ -35,7 +36,7 @@ class Cart extends StatelessWidget {
 
   Widget _checkoutSection(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         border: const Border(top: BorderSide(color: Colors.grey, width: 1)),
@@ -43,24 +44,44 @@ class Cart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Material(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.red,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(30),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Text('Checkout',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor)),
+          Container(
+            width: 100,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                gradient: LinearGradient(
+                    colors: [AppColors.gradiendLStart, AppColors.gradiendLEnd],
+                    stops: const [0.0, 1.0])),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Text('Checkout',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor)),
+                ),
               ),
             ),
           ),
-          const Text("Total: \$0.00"),
+          Row(
+            children: [
+              Text("Total: ",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor)),
+              Text(
+                "\$0.00",
+                style: TextStyle(fontSize: 18, color: AppColors.purple800),
+              ),
+            ],
+          ),
         ],
       ),
     );
