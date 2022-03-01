@@ -25,7 +25,7 @@ class Cart extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 60),
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return const CartFull();
+                  return const CartItem();
                 },
                 itemCount: 6,
               ),

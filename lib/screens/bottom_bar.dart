@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
-import 'package:flutter_shop/screens/feeds.dart';
+import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';
 import 'package:flutter_shop/screens/user_info.dart';
 
@@ -31,7 +31,7 @@ class _BottomBarState extends State<BottomBar> {
     super.initState();
   }
 
-  int _selectedPageIndex = 3;
+  int _selectedPageIndex = 1;
 
   void selectPage(int index) {
     setState(() {
