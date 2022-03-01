@@ -13,4 +13,5 @@ class AppIcons {
   static IconData date = FontAwesome5.calendar;
   static IconData darkMode = FontAwesome5.moon;
   static IconData camera = FontAwesome5.camera;
+  static IconData delete = FontAwesome5.trash;
 }

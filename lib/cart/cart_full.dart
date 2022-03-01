@@ -16,9 +16,6 @@ class _CartFullState extends State<CartFull> {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cart'),
-      ),
       body: Container(
         height: 140,
         margin: const EdgeInsets.all(10),
