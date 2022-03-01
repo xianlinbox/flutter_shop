@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart_empty.dart';
-import 'package:flutter_shop/cart/cart_full.dart';
+import 'package:flutter_shop/cart/cart_item.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/models/product.dart';
