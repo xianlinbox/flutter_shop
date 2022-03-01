@@ -20,11 +20,14 @@ class Cart extends StatelessWidget {
                 onPressed: () {},
               ),
             ]),
-            body: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return const CartFull();
-              },
-              itemCount: 6,
+            body: Container(
+              margin: const EdgeInsets.only(bottom: 60),
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return const CartFull();
+                },
+                itemCount: 6,
+              ),
             ),
             bottomSheet: _checkoutSection(context),
           );
