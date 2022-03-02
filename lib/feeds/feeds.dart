@@ -6,9 +6,13 @@ class Feeds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: FeedItem(),
+        child: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: 250 / 420,
+          children: List.generate(20, (index) => const FeedItem()),
+        ),
       ),
     );
   }
