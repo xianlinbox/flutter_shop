@@ -5,7 +5,7 @@ import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/screens/search.dart';
 import 'package:flutter_shop/screens/user_info.dart';
 
-import 'home.dart';
+import '../home/home.dart';
 
 class BottomBar extends StatefulWidget {
   static const routeName = '/bottomBar';
@@ -31,7 +31,7 @@ class _BottomBarState extends State<BottomBar> {
     super.initState();
   }
 
-  int _selectedPageIndex = 1;
+  int _selectedPageIndex = 0;
 
   void selectPage(int index) {
     setState(() {
