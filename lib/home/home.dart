@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
+import 'package:flutter_shop/home/app_carousel.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,14 +16,9 @@ class Home extends StatelessWidget {
             leading: const BackdropToggleButton(
               icon: AnimatedIcons.home_menu,
             ),
-            // actions: const <Widget>[
-            //   BackdropToggleButton(
-            //     icon: AnimatedIcons.home_menu,
-            //   )
-            // ],
           ),
           stickyFrontLayer: true,
-          frontLayer: const Text("font Alayer"),
+          frontLayer: const AppCarousel(),
           backLayer: BackdropNavigationBackLayer(
             items: const [
               ListTile(title: Text("Widget 1")),

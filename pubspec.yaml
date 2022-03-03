@@ -40,6 +40,7 @@ dependencies:
   shared_preferences: ^2.0.13
   badges: ^2.0.2
   backdrop: ^0.7.1
+  carousel_pro_nullsafety: ^1.0.2
 
 dev_dependencies:
   flutter_test:
