@@ -8,24 +8,45 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: BackdropScaffold(
-          headerHeight: MediaQuery.of(context).size.height * 0.15,
-          appBar: BackdropAppBar(
-            title: const Text("Home"),
-            leading: const BackdropToggleButton(
-              icon: AnimatedIcons.home_menu,
-            ),
+      body: BackdropScaffold(
+        headerHeight: MediaQuery.of(context).size.height * 0.15,
+        appBar: BackdropAppBar(
+          title: const Text("Home"),
+          leading: const BackdropToggleButton(
+            icon: AnimatedIcons.home_menu,
           ),
-          stickyFrontLayer: true,
-          frontLayer: const AppCarousel(),
-          backLayer: BackdropNavigationBackLayer(
-            items: const [
-              ListTile(title: Text("Widget 1")),
-              ListTile(title: Text("Widget 2")),
+        ),
+        stickyFrontLayer: true,
+        frontLayer: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const AppCarousel(),
+              Row(
+                children: [
+                  const Text(
+                    "Popular Brands",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "View All...",
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
+                      )),
+                ],
+              ),
             ],
-            onTap: (int position) => {},
           ),
+        ),
+        backLayer: BackdropNavigationBackLayer(
+          items: const [
+            ListTile(title: Text("Widget 1")),
+            ListTile(title: Text("Widget 2")),
+          ],
+          onTap: (int position) => {},
         ),
       ),
     );
