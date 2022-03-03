@@ -7,21 +7,24 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MaterialApp(
-        title: 'Backdrop Demo',
-        home: BackdropScaffold(
+      body: Container(
+        child: BackdropScaffold(
+          headerHeight: MediaQuery.of(context).size.height * 0.15,
           appBar: BackdropAppBar(
-            title: const Text("Navigation Example"),
-            actions: <Widget>[
-              BackdropToggleButton(
-                icon: AnimatedIcons.list_view,
-              )
-            ],
+            title: const Text("Home"),
+            leading: const BackdropToggleButton(
+              icon: AnimatedIcons.home_menu,
+            ),
+            // actions: const <Widget>[
+            //   BackdropToggleButton(
+            //     icon: AnimatedIcons.home_menu,
+            //   )
+            // ],
           ),
           stickyFrontLayer: true,
           frontLayer: const Text("font Alayer"),
           backLayer: BackdropNavigationBackLayer(
-            items: [
+            items: const [
               ListTile(title: Text("Widget 1")),
               ListTile(title: Text("Widget 2")),
             ],
