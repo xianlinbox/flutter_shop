@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_shop/home/app_carousel.dart';
 import 'package:flutter_shop/home/app_swiper.dart';
+import 'package:flutter_shop/home/category.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,40 +20,45 @@ class Home extends StatelessWidget {
           ),
         ),
         stickyFrontLayer: true,
-        frontLayer: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const AppCarousel(),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Category",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text(
-                    "Popular Brands",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
-                  ),
-                  const Spacer(),
-                  TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "View All...",
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w600),
-                      )),
-                ],
-              ),
-              const AppSwiper(),
-            ],
+        frontLayer: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const AppCarousel(),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Category",
+                      textAlign: TextAlign.left,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    ),
+                  ],
+                ),
+                const Category(),
+                Row(
+                  children: [
+                    const Text(
+                      "Popular Brands",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    ),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "View All...",
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w600),
+                        )),
+                  ],
+                ),
+                const AppSwiper(),
+              ],
+            ),
           ),
         ),
         backLayer: BackdropNavigationBackLayer(
