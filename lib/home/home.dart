@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_shop/home/app_carousel.dart';
+import 'package:flutter_shop/home/app_swiper.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: BackdropScaffold(
         headerHeight: MediaQuery.of(context).size.height * 0.15,
+        frontLayerBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: BackdropAppBar(
           title: const Text("Home"),
           leading: const BackdropToggleButton(
@@ -38,6 +40,7 @@ class Home extends StatelessWidget {
                       )),
                 ],
               ),
+              const AppSwiper(),
             ],
           ),
         ),
