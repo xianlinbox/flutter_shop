@@ -24,6 +24,17 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               const AppCarousel(),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  Text(
+                    "Category",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
               Row(
                 children: [
                   const Text(
