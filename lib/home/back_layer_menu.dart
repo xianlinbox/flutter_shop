@@ -18,7 +18,67 @@ class BlackLayerMenu extends StatelessWidget {
               stops: const [0.0, 1.0],
             ),
           ),
-        )
+        ),
+        Positioned(
+          top: -100,
+          left: 140,
+          child: Transform.rotate(
+            angle: -0.5,
+            child: Container(
+              height: 250,
+              width: 150,
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: -100,
+          left: 40,
+          child: Transform.rotate(
+            angle: -0.5,
+            child: Container(
+              height: 250,
+              width: 150,
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 140,
+          child: Transform.rotate(
+            angle: -0.5,
+            child: Container(
+              height: 250,
+              width: 150,
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 40,
+          child: Transform.rotate(
+            angle: -0.5,
+            child: Container(
+              height: 250,
+              width: 150,
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
