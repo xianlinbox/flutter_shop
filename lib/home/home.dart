@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_shop/home/app_carousel.dart';
 import 'package:flutter_shop/home/app_swiper.dart';
+import 'package:flutter_shop/home/back_layer_menu.dart';
 import 'package:flutter_shop/home/category.dart';
 
 class Home extends StatelessWidget {
@@ -61,13 +62,7 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-        backLayer: BackdropNavigationBackLayer(
-          items: const [
-            ListTile(title: Text("Widget 1")),
-            ListTile(title: Text("Widget 2")),
-          ],
-          onTap: (int position) => {},
-        ),
+        backLayer: const BlackLayerMenu(),
       ),
     );
   }
