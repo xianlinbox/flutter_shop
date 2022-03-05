@@ -77,12 +77,14 @@ class _CategoryItem extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            // border: Border.all(color: Colors.grey, width: 1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Image.network(
-            _imageUrl,
-            fit: BoxFit.fill,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            image: DecorationImage(
+              image: NetworkImage(_imageUrl),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
         const SizedBox(
