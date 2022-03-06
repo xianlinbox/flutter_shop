@@ -14,4 +14,6 @@ class AppIcons {
   static IconData darkMode = FontAwesome5.moon;
   static IconData camera = FontAwesome5.camera;
   static IconData delete = FontAwesome5.trash;
+  static IconData wishlist = FontAwesome5.heart;
+  static IconData upload = FontAwesome5.upload;
 }

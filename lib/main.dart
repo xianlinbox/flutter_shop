@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
 import 'package:flutter_shop/shared/models/dark_theme_preference.dart';
@@ -42,6 +43,9 @@ class _MyAppState extends State<MyApp> {
               title: 'Flutter Shop',
               theme: Styles.themeData(themeChangeProvider.darkTheme, context),
               home: const BottomBar(),
+              routes: {
+                '/feeds': (context) => const Feeds(),
+              },
             );
           },
         ));
