@@ -137,6 +137,23 @@ class UserInfoState extends State<UserInfo> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        title('User Bag'),
+        userBagTile(
+          'Wishlist',
+          AppIcons.wishlist,
+          () {
+            Navigator.pushNamed(context, '/wishlist');
+          },
+          context,
+        ),
+        userBagTile(
+          'Cart',
+          AppIcons.cart,
+          () {
+            Navigator.pushNamed(context, '/cart');
+          },
+          context,
+        ),
         title('User Info'),
         userListTile('Email', 'empty', AppIcons.email, context),
         userListTile('Phone Number', '3124589888', AppIcons.phone, context),
@@ -194,6 +211,24 @@ class UserInfoState extends State<UserInfo> {
           title: Text(title),
           subtitle: Text(subtitle),
           onTap: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget userBagTile(
+      String title, IconData icon, Function onClick, BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        splashColor: Theme.of(context).splashColor,
+        child: ListTile(
+          leading: Icon(icon),
+          title: Text(title),
+          trailing: const Icon(Icons.chevron_right_rounded),
+          onTap: () {
+            onClick();
+          },
         ),
       ),
     );
