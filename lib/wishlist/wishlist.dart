@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/wishlist/wishlist_empty.dart';
+import 'package:flutter_shop/wishlist/wishlist_item.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List _products = [];
+    final List _products = [{}];
 
     return _products.isEmpty
         ? const Scaffold(
@@ -14,11 +15,13 @@ class Wishlist extends StatelessWidget {
           )
         : Scaffold(
             appBar: AppBar(
-              title: const Text('Wishlist'),
+              title: Text("Wishlist(${_products.length})"),
             ),
-            body: const Center(
-              child: Text('Wishlist'),
-            ),
+            body: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return const WishlistItem();
+                }),
           );
   }
 }
