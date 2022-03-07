@@ -4,6 +4,7 @@ import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
 import 'package:flutter_shop/shared/models/dark_theme_preference.dart';
+import 'package:flutter_shop/wishlist/wishlist.dart';
 import 'package:provider/provider.dart';
 import 'shared/theme_data.dart';
 
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
               routes: {
                 '/feeds': (context) => const Feeds(),
                 '/cart': (context) => const Cart(),
+                '/wishlist': (context) => const Wishlist(),
               },
             );
           },
