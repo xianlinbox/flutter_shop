@@ -20,16 +20,28 @@ class _ProductDetailState extends State<ProductDetail> {
       appBar: _appBar(context),
       body: Stack(children: [
         Container(
-          foregroundDecoration: BoxDecoration(color: Colors.black12),
+          foregroundDecoration: const BoxDecoration(color: Colors.black12),
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.35,
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.fill,
-          ),
+          child: Image.network(product.imageUrl),
         ),
-        Center(
-          child: const Text('Product Detail'),
+        SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 15, bottom: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 225),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    _stackButton(Icons.save),
+                    _stackButton(Icons.share),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ]),
     );
@@ -57,6 +69,20 @@ class _ProductDetailState extends State<ProductDetail> {
           onPressed: () {},
         ),
       ],
+    );
+  }
+
+  Widget _stackButton(IconData icon) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+          onTap: () {},
+          splashColor: Colors.purple.shade200,
+          borderRadius: BorderRadius.circular(30),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Icon(icon, size: 23, color: AppColors.white),
+          )),
     );
   }
 }
