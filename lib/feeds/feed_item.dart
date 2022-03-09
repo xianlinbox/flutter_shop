@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 
 class FeedItem extends StatefulWidget {
@@ -17,7 +18,7 @@ class _FeedItemState extends State<FeedItem> {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, '/product_details');
+          Navigator.pushNamed(context, ProductDetail.routeName);
         },
         child: Container(
           decoration: BoxDecoration(

@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                 '/feeds': (context) => const Feeds(),
                 '/cart': (context) => const Cart(),
                 '/wishlist': (context) => const Wishlist(),
-                '/product_details': (context) => ProductDetail(),
+                ProductDetail.routeName: (context) => const ProductDetail(),
               },
             );
           },
