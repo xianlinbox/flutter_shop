@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 
 class ProductDetail extends StatelessWidget {
-  final Product _product = new Product();
+  // final Product _product = new Product();
 
   ProductDetail({Key? key}) : super(key: key);
 

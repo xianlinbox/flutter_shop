@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter_shop/shared/models/product.dart';
 
 class FeedItem extends StatefulWidget {
-  const FeedItem({Key? key}) : super(key: key);
+  const FeedItem({Key? key, required this.product}) : super(key: key);
+  final Product product;
 
   @override
   _FeedItemState createState() => _FeedItemState();
@@ -18,8 +20,6 @@ class _FeedItemState extends State<FeedItem> {
           Navigator.pushNamed(context, '/product_details');
         },
         child: Container(
-          width: 250,
-          height: 350,
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
               borderRadius: BorderRadius.circular(6)),
@@ -33,20 +33,10 @@ class _FeedItemState extends State<FeedItem> {
                           minHeight: 100,
                           maxHeight: MediaQuery.of(context).size.height * 0.3),
                       child: Image.network(
-                        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842712000",
+                        widget.product.imageUrl,
                         fit: BoxFit.fitWidth,
                       ))),
-              Positioned(
-                right: 0,
-                child: Badge(
-                  toAnimate: false,
-                  shape: BadgeShape.square,
-                  badgeColor: Colors.purple,
-                  borderRadius: BorderRadius.circular(4),
-                  badgeContent:
-                      const Text('New', style: TextStyle(color: Colors.white)),
-                ),
-              ),
+              _favoriteTag()
             ]),
             const SizedBox(height: 10),
             Container(
@@ -55,22 +45,22 @@ class _FeedItemState extends State<FeedItem> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('iPhone XR',
+                    Text(widget.product.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600)),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Text('\$999.99',
-                          style: TextStyle(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text('\$ ${widget.product.price}',
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w800)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('Quantity: 12 left',
-                            style: TextStyle(
+                        Text('Quantity: ${widget.product.quantity} left',
+                            style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
                                 fontWeight: FontWeight.w800)),
@@ -90,5 +80,20 @@ class _FeedItemState extends State<FeedItem> {
         ),
       ),
     );
+  }
+
+  Widget _favoriteTag() {
+    return widget.product.isFavourite
+        ? Positioned(
+            right: 0,
+            child: Badge(
+              toAnimate: false,
+              shape: BadgeShape.square,
+              badgeColor: Colors.purple,
+              badgeContent:
+                  const Text('Favorite', style: TextStyle(color: Colors.white)),
+            ),
+          )
+        : Container();
   }
 }

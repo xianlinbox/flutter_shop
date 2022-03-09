@@ -10,7 +10,7 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = [Product()];
+    List<Product> products = [];
 
     return products.isEmpty
         ? const Scaffold(body: CartEmpty())
