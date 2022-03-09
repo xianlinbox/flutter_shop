@@ -4,7 +4,6 @@ import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 
 class ProductDetail extends StatefulWidget {
-  // final Product _product = new Product();
   static const routeName = '/product-detail';
 
   const ProductDetail({Key? key}) : super(key: key);
@@ -16,11 +15,21 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       appBar: _appBar(context),
-      body: Stack(children: const [
+      body: Stack(children: [
+        Container(
+          foregroundDecoration: BoxDecoration(color: Colors.black12),
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.35,
+          child: Image.network(
+            product.imageUrl,
+            fit: BoxFit.fill,
+          ),
+        ),
         Center(
-          child: Text('Product Detail'),
+          child: const Text('Product Detail'),
         ),
       ]),
     );
