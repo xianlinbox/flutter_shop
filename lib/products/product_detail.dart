@@ -119,7 +119,6 @@ class _ProductDetailState extends State<ProductDetail> {
                   : AppColors.subTitle,
             ),
           ),
-          const SizedBox(height: 3.0),
           _divider(),
           Container(
             padding: const EdgeInsets.only(top: 10),
@@ -130,15 +129,12 @@ class _ProductDetailState extends State<ProductDetail> {
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
-          const SizedBox(height: 3.0),
           _divider(),
-          const SizedBox(height: 10.0),
           _productDetailItem('Category', product.category),
           const SizedBox(height: 3.0),
           _productDetailItem('Brand', product.brand),
           const SizedBox(height: 3.0),
           _productDetailItem('Quanity', '${product.quantity}'),
-          const SizedBox(height: 3.0),
           _divider(),
           // Text(
           //   product.description,
@@ -151,10 +147,13 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   Widget _divider() {
-    return const Divider(
-      thickness: 1,
-      color: Colors.grey,
-      height: 1,
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 10.0),
+      child: Divider(
+        thickness: 1,
+        color: Colors.grey,
+        height: 1,
+      ),
     );
   }
 
