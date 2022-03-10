@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/models/product.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetail extends StatefulWidget {
   static const routeName = '/product-detail';
@@ -15,6 +17,7 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
+    final themeState = Provider.of<DarkThemeProvider>(context);
     final product = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       appBar: _appBar(context),
@@ -27,20 +30,24 @@ class _ProductDetailState extends State<ProductDetail> {
         ),
         SingleChildScrollView(
           padding: const EdgeInsets.only(top: 15, bottom: 20),
-          child: Column(
-            children: [
-              const SizedBox(height: 225),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, right: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    _stackButton(Icons.save),
-                    _stackButton(Icons.share),
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 225),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      _stackButton(Icons.save),
+                      _stackButton(Icons.share),
+                    ],
+                  ),
                 ),
-              )
-            ],
+                _productInfo(product, themeState)
+              ],
+            ),
           ),
         ),
       ]),
@@ -80,9 +87,48 @@ class _ProductDetailState extends State<ProductDetail> {
           splashColor: Colors.purple.shade200,
           borderRadius: BorderRadius.circular(30),
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(5),
             child: Icon(icon, size: 23, color: AppColors.white),
           )),
+    );
+  }
+
+  Widget _productInfo(Product product, DarkThemeProvider themeState) {
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 20),
+            width: MediaQuery.of(context).size.width * 0.95,
+            child: Text(
+              product.name,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.black),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '\$ ${product.price}',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: themeState.darkTheme
+                  ? Theme.of(context).disabledColor
+                  : AppColors.subTitle,
+            ),
+          ),
+          const SizedBox(height: 3.0),
+          const Divider(
+            thickness: 1,
+            color: Colors.grey,
+            height: 1,
+          ),
+        ],
+      ),
     );
   }
 }
