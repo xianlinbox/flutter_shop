@@ -11,6 +11,8 @@ class Feeds extends StatelessWidget {
       Product(
           '1',
           'iPhone XR',
+          'Electronics',
+          'Apple',
           1099,
           "The best phone ever",
           10,
@@ -19,6 +21,8 @@ class Feeds extends StatelessWidget {
       Product(
           '2',
           'Huwawei P30 Pro',
+          'Electronics',
+          'Huwawei',
           1099,
           "The best Android phone ever",
           2,
@@ -27,6 +31,8 @@ class Feeds extends StatelessWidget {
       Product(
           '3',
           'BURBERRY: The Kensington Trench Coat',
+          'Clothes',
+          'BURBERRY',
           1099,
           "BURBERRY: The Kensington Trench Coat",
           10,
@@ -35,6 +41,8 @@ class Feeds extends StatelessWidget {
       Product(
           '4',
           'GG Supreme Ophidia Small Shoulder Bag',
+          'Clothes',
+          'Luxury',
           1790,
           "Beige/ebony GG Supreme canvas, a material with low environmental impact, with brown leather trim",
           10,
@@ -43,6 +51,8 @@ class Feeds extends StatelessWidget {
       Product(
           '5',
           'lululemon Align™ High-Rise Crop 23"',
+          'Clothes',
+          'lululemon',
           1099,
           "Feels Buttery Soft and Weightless, Nulu™ Fabric",
           10,

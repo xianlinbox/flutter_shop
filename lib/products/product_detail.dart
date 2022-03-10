@@ -132,6 +132,19 @@ class _ProductDetailState extends State<ProductDetail> {
           ),
           const SizedBox(height: 3.0),
           _divider(),
+          const SizedBox(height: 10.0),
+          _productDetailItem('Category', product.category),
+          const SizedBox(height: 3.0),
+          _productDetailItem('Brand', product.brand),
+          const SizedBox(height: 3.0),
+          _productDetailItem('Quanity', '${product.quantity}'),
+          const SizedBox(height: 3.0),
+          _divider(),
+          // Text(
+          //   product.description,
+          //   maxLines: 4,
+          //   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          // ),
         ],
       ),
     );
@@ -143,5 +156,19 @@ class _ProductDetailState extends State<ProductDetail> {
       color: Colors.grey,
       height: 1,
     );
+  }
+
+  Widget _productDetailItem(String title, String value) {
+    return Row(children: [
+      Text(
+        '$title:',
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+      ),
+      const SizedBox(width: 10),
+      Text(
+        value,
+        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+      ),
+    ]);
   }
 }
