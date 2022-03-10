@@ -104,17 +104,15 @@ class _ProductDetailState extends State<ProductDetail> {
             width: MediaQuery.of(context).size.width * 0.95,
             child: Text(
               product.name,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.black),
+              maxLines: 2,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             '\$ ${product.price}',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.w600,
               color: themeState.darkTheme
                   ? Theme.of(context).disabledColor
@@ -122,13 +120,28 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
           ),
           const SizedBox(height: 3.0),
-          const Divider(
-            thickness: 1,
-            color: Colors.grey,
-            height: 1,
+          _divider(),
+          Container(
+            padding: const EdgeInsets.only(top: 10),
+            width: MediaQuery.of(context).size.width * 0.95,
+            child: Text(
+              product.description,
+              maxLines: 4,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
           ),
+          const SizedBox(height: 3.0),
+          _divider(),
         ],
       ),
+    );
+  }
+
+  Widget _divider() {
+    return const Divider(
+      thickness: 1,
+      color: Colors.grey,
+      height: 1,
     );
   }
 }
