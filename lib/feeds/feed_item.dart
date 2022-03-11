@@ -30,7 +30,6 @@ class _FeedItemState extends State<FeedItem> {
               ClipRRect(
                   borderRadius: BorderRadius.circular(2),
                   child: Container(
-                      // width: double.infinity,
                       constraints: BoxConstraints(
                           minHeight: 100,
                           maxHeight: MediaQuery.of(context).size.height * 0.3),

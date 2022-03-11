@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/feeds/feed_item.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/models/product.dart';
@@ -44,7 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   ],
                 ),
               ),
-              _productInfo(product, themeState)
+              _productInfo(context, product, themeState)
             ],
           ),
         ),
@@ -91,7 +92,10 @@ class _ProductDetailState extends State<ProductDetail> {
     );
   }
 
-  Widget _productInfo(Product product, DarkThemeProvider themeState) {
+  Widget _productInfo(
+      BuildContext context, Product product, DarkThemeProvider themeState) {
+    final productsProvider = Provider.of<ProductsProvider>(context);
+    final List _products = productsProvider.products;
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
@@ -206,17 +210,19 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
                 Container(
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   margin: const EdgeInsets.only(bottom: 30),
                   width: double.infinity,
                   height: 340,
                   child: ListView.builder(
-                    itemCount: 7,
+                    itemCount: _products.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext ctx, int index) {
-                      return SizedBox(
+                      return Container(
                           width: 200,
                           height: 200,
-                          child: FeedItem(product: product));
+                          padding: const EdgeInsets.only(left: 4.0),
+                          child: FeedItem(product: _products[index]));
                     },
                   ),
                 ),
