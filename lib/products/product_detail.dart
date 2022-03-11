@@ -30,24 +30,21 @@ class _ProductDetailState extends State<ProductDetail> {
         ),
         SingleChildScrollView(
           padding: const EdgeInsets.only(top: 15, bottom: 20),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 225),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      _stackButton(Icons.save),
-                      _stackButton(Icons.share),
-                    ],
-                  ),
+          child: Column(
+            children: [
+              const SizedBox(height: 225),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    _stackButton(Icons.save),
+                    _stackButton(Icons.share),
+                  ],
                 ),
-                _productInfo(product, themeState)
-              ],
-            ),
+              ),
+              _productInfo(product, themeState)
+            ],
           ),
         ),
       ]),
@@ -99,43 +96,129 @@ class _ProductDetailState extends State<ProductDetail> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 20),
-            width: MediaQuery.of(context).size.width * 0.95,
-            child: Text(
-              product.name,
-              maxLines: 2,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16),
+            child: Container(
+              padding: const EdgeInsets.only(top: 20),
+              width: MediaQuery.of(context).size.width * 0.95,
+              child: Text(
+                product.name,
+                maxLines: 2,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            '\$ ${product.price}',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: themeState.darkTheme
-                  ? Theme.of(context).disabledColor
-                  : AppColors.subTitle,
-            ),
-          ),
-          _divider(),
-          Container(
-            padding: const EdgeInsets.only(top: 10),
-            width: MediaQuery.of(context).size.width * 0.95,
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16),
             child: Text(
-              product.description,
-              maxLines: 4,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              '\$ ${product.price}',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: themeState.darkTheme
+                    ? Theme.of(context).disabledColor
+                    : AppColors.subTitle,
+              ),
             ),
           ),
           _divider(),
-          _productDetailItem('Category', product.category),
-          const SizedBox(height: 3.0),
-          _productDetailItem('Brand', product.brand),
-          const SizedBox(height: 3.0),
-          _productDetailItem('Quanity', '${product.quantity}'),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16),
+            child: Container(
+              padding: const EdgeInsets.only(top: 10),
+              width: MediaQuery.of(context).size.width * 0.95,
+              child: Text(
+                product.description,
+                maxLines: 4,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
           _divider(),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16),
+            child: Column(
+              children: [
+                _productDetailItem('Category', product.category),
+                const SizedBox(height: 3.0),
+                _productDetailItem('Brand', product.brand),
+                const SizedBox(height: 3.0),
+                _productDetailItem('Quanity', '${product.quantity}'),
+                const SizedBox(height: 8.0),
+              ],
+            ),
+          ),
+          const Divider(
+            thickness: 1,
+            color: Colors.grey,
+            height: 1,
+          ),
+          Container(
+            color: Theme.of(context).backgroundColor,
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 10.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'No reviews yet',
+                    style: TextStyle(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.0),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Be the first review!',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.0,
+                      color: themeState.darkTheme
+                          ? Theme.of(context).disabledColor
+                          : AppColors.subTitle,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: Colors.grey,
+                  height: 1,
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(8.0),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: const Text(
+                    'Suggested products:',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 30),
+                  width: double.infinity,
+                  height: 340,
+                  child: ListView.builder(
+                    itemCount: 7,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      return const Text("Product");
+                    },
+                  ),
+                ),
+              ],
+            ),
+          )
           // Text(
           //   product.description,
           //   maxLines: 4,
