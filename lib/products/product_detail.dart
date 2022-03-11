@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/feeds/feed_item.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -197,7 +198,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16),
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: const Text(
                     'Suggested products:',
@@ -212,7 +213,10 @@ class _ProductDetailState extends State<ProductDetail> {
                     itemCount: 7,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext ctx, int index) {
-                      return const Text("Product");
+                      return SizedBox(
+                          width: 200,
+                          height: 200,
+                          child: FeedItem(product: product));
                     },
                   ),
                 ),
