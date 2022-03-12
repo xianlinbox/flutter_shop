@@ -75,7 +75,7 @@ class _CategoryItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, Feeds.routeName);
+          Navigator.pushNamed(context, Feeds.routeName, arguments: _name);
         },
         child: Column(children: [
           Container(
