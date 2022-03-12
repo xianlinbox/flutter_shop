@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
               theme: Styles.themeData(themeChangeProvider.darkTheme, context),
               home: const BottomBar(),
               routes: {
-                '/feeds': (context) => const Feeds(),
+                Feeds.routeName: (context) => const Feeds(),
                 '/cart': (context) => const Cart(),
                 '/wishlist': (context) => const Wishlist(),
                 ProductDetail.routeName: (context) => const ProductDetail(),

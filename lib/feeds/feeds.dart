@@ -4,6 +4,7 @@ import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:provider/provider.dart';
 
 class Feeds extends StatelessWidget {
+  static const routeName = '/feeds';
   const Feeds({Key? key}) : super(key: key);
 
   @override
@@ -12,6 +13,9 @@ class Feeds extends StatelessWidget {
     final List _products = productsProvider.products;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Feeds'),
+      ),
       body: Center(
         child: GridView.count(
           crossAxisCount: 2,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/feeds/feeds.dart';
 
 class Category extends StatelessWidget {
   const Category({Key? key}) : super(key: key);
@@ -72,32 +73,37 @@ class _CategoryItem extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(children: [
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-            image: DecorationImage(
-              image: NetworkImage(_imageUrl),
-              fit: BoxFit.fill,
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, Feeds.routeName);
+        },
+        child: Column(children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              image: DecorationImage(
+                image: NetworkImage(_imageUrl),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          _name,
-          style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
-              color: Theme.of(context).textSelectionTheme.selectionColor),
-        )
-      ]),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            _name,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).textSelectionTheme.selectionColor),
+          )
+        ]),
+      ),
     );
   }
 }
