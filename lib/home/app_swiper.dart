@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/products/models/product_filter.dart';
+import 'package:flutter_shop/products/products.dart';
+import 'package:flutter_shop/shared/models/brand.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 class AppSwiper extends StatelessWidget {
@@ -6,19 +9,38 @@ class AppSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List _swiperImages = [
-      'https://media.idownloadblog.com/wp-content/uploads/2018/07/Apple-logo-black-and-white.png',
-      'https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg',
-      'http://familysupportivehousing.org/wp-content/uploads/2019/04/microsoft.jpg',
-      'https://logos-world.net/wp-content/uploads/2020/08/Burberry-Logo-1999-2018.png',
-      'https://blog.logomyway.com/wp-content/uploads/2016/12/gucci-logo-gold.jpg'
+    List<Brand> _brands = [
+      Brand(
+          name: 'apple',
+          image:
+              'https://media.idownloadblog.com/wp-content/uploads/2018/07/Apple-logo-black-and-white.png'),
+      Brand(
+          name: 'microsoft',
+          image:
+              'http://familysupportivehousing.org/wp-content/uploads/2019/04/microsoft.jpg'),
+      Brand(
+          name: 'burberry',
+          image:
+              'https://logos-world.net/wp-content/uploads/2020/08/Burberry-Logo-1999-2018.png'),
+      Brand(
+          name: 'gucci',
+          image:
+              'https://blog.logomyway.com/wp-content/uploads/2016/12/gucci-logo-gold.jpg'),
+      Brand(
+          name: 'google',
+          image:
+              'https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg'),
     ];
 
     return SizedBox(
       height: 210,
       width: MediaQuery.of(context).size.width * 0.95,
       child: Swiper(
-        onTap: (index) {},
+        onTap: (index) {
+          Navigator.pushNamed(context, Products.routeName,
+              arguments:
+                  ProductFilter(key: 'brand', value: _brands[index].name));
+        },
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
@@ -28,14 +50,14 @@ class AppSwiper extends StatelessWidget {
               child: Container(
                 color: Colors.white,
                 child: Image.network(
-                  _swiperImages[index],
+                  _brands[index].image,
                   fit: BoxFit.fill,
                 ),
               ),
             ),
           );
         },
-        itemCount: _swiperImages.length,
+        itemCount: _brands.length,
       ),
     );
   }

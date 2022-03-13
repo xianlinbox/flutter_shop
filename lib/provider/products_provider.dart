@@ -38,7 +38,7 @@ class ProductsProvider with ChangeNotifier {
         '4',
         'GG Supreme Ophidia Small Shoulder Bag',
         'Clothes',
-        'Luxury',
+        'Gucci',
         1790,
         "Beige/ebony GG Supreme canvas, a material with low environmental impact, with brown leather trim",
         10,
