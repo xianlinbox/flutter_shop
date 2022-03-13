@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/feeds/feed_item.dart';
+import 'package:flutter_shop/products/product_item.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,7 @@ class Feeds extends StatelessWidget {
                 childAspectRatio: 250 / 460,
                 children: List.generate(
                     _products.length,
-                    (index) => FeedItem(
+                    (index) => ProductItem(
                           product: _products[index],
                         )),
               ),
@@ -39,7 +39,7 @@ class Feeds extends StatelessWidget {
                 childAspectRatio: 250 / 460,
                 children: List.generate(
                     _products.length,
-                    (index) => FeedItem(
+                    (index) => ProductItem(
                           product: _products[index],
                         )),
               ),

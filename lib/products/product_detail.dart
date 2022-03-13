@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/feeds/feed_item.dart';
+import 'package:flutter_shop/products/product_item.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
@@ -222,7 +222,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           width: 200,
                           height: 200,
                           padding: const EdgeInsets.only(left: 4.0),
-                          child: FeedItem(product: _products[index]));
+                          child: ProductItem(product: _products[index]));
                     },
                   ),
                 ),

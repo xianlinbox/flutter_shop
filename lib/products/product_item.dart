@@ -3,15 +3,15 @@ import 'package:badges/badges.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/shared/models/product.dart';
 
-class FeedItem extends StatefulWidget {
-  const FeedItem({Key? key, required this.product}) : super(key: key);
+class ProductItem extends StatefulWidget {
+  const ProductItem({Key? key, required this.product}) : super(key: key);
   final Product product;
 
   @override
-  _FeedItemState createState() => _FeedItemState();
+  _ProductItemState createState() => _ProductItemState();
 }
 
-class _FeedItemState extends State<FeedItem> {
+class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
