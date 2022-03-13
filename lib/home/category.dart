@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/feeds/feeds.dart';
+import 'package:flutter_shop/products/models/product_filter.dart';
+import 'package:flutter_shop/products/products.dart';
 
 class Category extends StatelessWidget {
   const Category({Key? key}) : super(key: key);
@@ -75,7 +76,8 @@ class _CategoryItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, Feeds.routeName, arguments: _name);
+          Navigator.pushNamed(context, Products.routeName,
+              arguments: ProductFilter(key: 'category', value: _name));
         },
         child: Column(children: [
           Container(

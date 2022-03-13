@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/shared/models/product.dart';
+import 'package:flutter_shop/products/models/product_filter.dart';
+import 'package:flutter_shop/products/models/product.dart';
 
 class ProductsProvider with ChangeNotifier {
   final List<Product> _products = [
@@ -57,9 +58,7 @@ class ProductsProvider with ChangeNotifier {
 
   List<Product> get products => _products;
 
-  List<Product> findProductsByCategory(String? category) {
-    return _products
-        .where((product) => category == null || product.category == category)
-        .toList();
+  List<Product> filterProducts(ProductFilter filter) {
+    return _products.where((product) => filter.isFiltered(product)).toList();
   }
 }

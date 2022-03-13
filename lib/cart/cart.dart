@@ -3,7 +3,7 @@ import 'package:flutter_shop/cart/cart_empty.dart';
 import 'package:flutter_shop/cart/cart_item.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
-import 'package:flutter_shop/shared/models/product.dart';
+import 'package:flutter_shop/products/models/product.dart';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);

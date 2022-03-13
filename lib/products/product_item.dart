@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_shop/products/product_detail.dart';
-import 'package:flutter_shop/shared/models/product.dart';
+import 'package:flutter_shop/products/models/product.dart';
 
 class ProductItem extends StatefulWidget {
   const ProductItem({Key? key, required this.product}) : super(key: key);

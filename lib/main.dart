@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/products/product_detail.dart';
+import 'package:flutter_shop/products/products.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
 import 'package:flutter_shop/shared/models/dark_theme_preference.dart';
-import 'package:flutter_shop/shared/models/product.dart';
+import 'package:flutter_shop/products/models/product.dart';
 import 'package:flutter_shop/wishlist/wishlist.dart';
 import 'package:provider/provider.dart';
 import 'shared/theme_data.dart';
@@ -54,6 +55,7 @@ class _MyAppState extends State<MyApp> {
                 '/cart': (context) => const Cart(),
                 '/wishlist': (context) => const Wishlist(),
                 ProductDetail.routeName: (context) => const ProductDetail(),
+                Products.routeName: (context) => const Products(),
               },
             );
           },

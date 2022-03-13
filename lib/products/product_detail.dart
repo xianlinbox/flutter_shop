@@ -4,7 +4,7 @@ import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
-import 'package:flutter_shop/shared/models/product.dart';
+import 'package:flutter_shop/products/models/product.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetail extends StatefulWidget {
