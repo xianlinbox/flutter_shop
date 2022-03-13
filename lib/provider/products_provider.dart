@@ -56,4 +56,10 @@ class ProductsProvider with ChangeNotifier {
   ];
 
   List<Product> get products => _products;
+
+  List<Product> findProductsByCategory(String? category) {
+    return _products
+        .where((product) => category == null || product.category == category)
+        .toList();
+  }
 }

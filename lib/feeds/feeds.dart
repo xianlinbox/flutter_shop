@@ -12,11 +12,8 @@ class Feeds extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoryName = ModalRoute.of(context)?.settings.arguments as String?;
     final productsProvider = Provider.of<ProductsProvider>(context);
-    final List<Product> _products = productsProvider.products;
-    final filteredProducts = _products
-        .where((product) =>
-            categoryName == null || product.category == categoryName)
-        .toList();
+    final List<Product> _products =
+        productsProvider.findProductsByCategory(categoryName);
 
     return categoryName == null
         ? Scaffold(
@@ -25,9 +22,9 @@ class Feeds extends StatelessWidget {
                 crossAxisCount: 2,
                 childAspectRatio: 250 / 460,
                 children: List.generate(
-                    filteredProducts.length,
+                    _products.length,
                     (index) => FeedItem(
-                          product: filteredProducts[index],
+                          product: _products[index],
                         )),
               ),
             ),
@@ -41,9 +38,9 @@ class Feeds extends StatelessWidget {
                 crossAxisCount: 2,
                 childAspectRatio: 250 / 460,
                 children: List.generate(
-                    filteredProducts.length,
+                    _products.length,
                     (index) => FeedItem(
-                          product: filteredProducts[index],
+                          product: _products[index],
                         )),
               ),
             ),
