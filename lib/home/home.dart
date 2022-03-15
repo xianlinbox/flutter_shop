@@ -4,6 +4,7 @@ import 'package:flutter_shop/home/app_carousel.dart';
 import 'package:flutter_shop/home/app_swiper.dart';
 import 'package:flutter_shop/home/back_layer_menu.dart';
 import 'package:flutter_shop/home/category.dart';
+import 'package:flutter_shop/products/brand_products.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -49,7 +50,9 @@ class Home extends StatelessWidget {
                     ),
                     const Spacer(),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, BrandProducts.routeName);
+                        },
                         child: const Text(
                           "View All...",
                           style: TextStyle(
