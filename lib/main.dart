@@ -4,6 +4,7 @@ import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/products/brand_products.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/products/products.dart';
+import 'package:flutter_shop/provider/brands_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         providers: [
           ChangeNotifierProvider(create: (_) => themeChangeProvider),
           ChangeNotifierProvider(create: (_) => ProductsProvider()),
+          ChangeNotifierProvider(create: (_) => BrandProvider()),
         ],
         child: Consumer<DarkThemeProvider>(
           builder: (context, darkThemeProvider, child) {

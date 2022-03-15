@@ -73,4 +73,18 @@ class _BrandProductsState extends State<BrandProducts> {
       ),
     );
   }
+
+  NavigationRailDestination buildRotatedTextRailDestination(
+      String text, double padding) {
+    return NavigationRailDestination(
+      icon: const SizedBox.shrink(),
+      label: Padding(
+        padding: EdgeInsets.symmetric(vertical: padding),
+        child: RotatedBox(
+          quarterTurns: -1,
+          child: Text(text),
+        ),
+      ),
+    );
+  }
 }
