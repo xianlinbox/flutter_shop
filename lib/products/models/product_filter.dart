@@ -15,6 +15,8 @@ class ProductFilter {
         return product.brand.toLowerCase() == value.toLowerCase();
       case 'category':
         return product.category.toLowerCase() == value.toLowerCase();
+      case 'all':
+        return true;
       default:
         return false;
     }

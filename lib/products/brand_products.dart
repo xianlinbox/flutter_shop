@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/products/models/product_filter.dart';
 import 'package:flutter_shop/provider/brands_provider.dart';
+import 'package:flutter_shop/provider/products_provider.dart';
+import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/models/brand.dart';
 import 'package:provider/provider.dart';
 
@@ -62,6 +65,7 @@ class _BrandProductsState extends State<BrandProducts> {
                           .toList())),
             ));
           }),
+          _contentSpace(context, 'all')
         ],
       ),
     );
@@ -79,5 +83,37 @@ class _BrandProductsState extends State<BrandProducts> {
         ),
       ),
     );
+  }
+
+  Widget _contentSpace(BuildContext context, String brand) {
+    final productsData = Provider.of<ProductsProvider>(context, listen: false);
+    final products =
+        productsData.filterProducts(ProductFilter(key: 'brand', value: brand));
+
+    return Expanded(
+        child: Padding(
+      padding: const EdgeInsets.fromLTRB(24, 8, 0, 0),
+      child: MediaQuery.removePadding(
+          context: context,
+          removeTop: true,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                AppIcons.database,
+                size: 80,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Text(
+                'No products related to this brand',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            ],
+          )),
+    ));
   }
 }

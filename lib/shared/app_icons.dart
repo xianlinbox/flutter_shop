@@ -16,4 +16,5 @@ class AppIcons {
   static IconData delete = FontAwesome5.trash;
   static IconData wishlist = FontAwesome5.heart;
   static IconData upload = FontAwesome5.upload;
+  static IconData database = FontAwesome5.database;
 }
