@@ -15,10 +15,13 @@ class BrandProducts extends StatefulWidget {
 }
 
 class _BrandProductsState extends State<BrandProducts> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final brandsProvider = Provider.of<BrandProvider>(context);
     List<Brand> _brands = brandsProvider.brands;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Brands',
@@ -37,9 +40,11 @@ class _BrandProductsState extends State<BrandProducts> {
                   child: NavigationRail(
                       minWidth: 56,
                       groupAlignment: 1,
-                      selectedIndex: 1,
+                      selectedIndex: _selectedIndex,
                       onDestinationSelected: (index) {
-                        print(index);
+                        setState(() {
+                          _selectedIndex = index;
+                        });
                       },
                       labelType: NavigationRailLabelType.all,
                       leading: Column(
@@ -59,10 +64,13 @@ class _BrandProductsState extends State<BrandProducts> {
                           ),
                         ],
                       ),
-                      destinations: _brands
-                          .map((brand) =>
-                              buildRotatedTextRailDestination(brand.name, 8))
-                          .toList())),
+                      destinations: [
+                    buildRotatedTextRailDestination('All', 8),
+                    ..._brands
+                        .map((brand) =>
+                            buildRotatedTextRailDestination(brand.name, 8))
+                        .toList()
+                  ])),
             ));
           }),
           _contentSpace(context, 'all')
