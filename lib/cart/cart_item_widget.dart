@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/cart/models/cart_item.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:fluttericon/entypo_icons.dart';
@@ -15,6 +16,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
+    final cartItem = Provider.of<CartItem>(context);
+
     return InkWell(
       child: Container(
         height: 140,
@@ -29,10 +32,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         child: Row(children: [
           Container(
             width: 140,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842712000'),
+                image: NetworkImage(cartItem.product.imageUrl),
                 fit: BoxFit.fill,
               ),
             ),
@@ -45,12 +47,12 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Flexible(
+                      Flexible(
                         child: Text(
-                          "iphone XR",
+                          cartItem.product.name,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -72,15 +74,15 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       ),
                     ]),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Price:',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text("500\$",
-                        style: TextStyle(
+                    Text("\$ ${cartItem.product.price}",
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         )),
@@ -94,7 +96,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text('500\$',
+                    Text('\$ ${cartItem.totalPrice}',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -115,7 +117,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(32.0),
-                        onTap: () {},
+                        onTap: () {
+                          cartItem.minus(1);
+                        },
                         child: const SizedBox(
                           child: Icon(
                             Entypo.minus,
@@ -138,8 +142,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           0.0,
                           1.0
                         ])),
-                        child: const Text(
-                          '1',
+                        child: Text(
+                          '${cartItem.quanity}',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -148,7 +152,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(32.0),
-                        onTap: () {},
+                        onTap: () {
+                          cartItem.add(1);
+                        },
                         child: const SizedBox(
                           child: Icon(
                             Entypo.plus,

@@ -15,8 +15,6 @@ class CartScreen extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
     List<CartItem> items = cartProvider.items;
 
-    print(items);
-
     return items.isEmpty
         ? const Scaffold(body: CartEmpty())
         : Scaffold(
@@ -29,10 +27,12 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: const EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return const CartItemWidget();
-                },
-                itemCount: 6,
+                itemBuilder: (BuildContext context, int index) =>
+                    ChangeNotifierProvider.value(
+                  value: items[index],
+                  child: const CartItemWidget(),
+                ),
+                itemCount: items.length,
               ),
             ),
             bottomSheet: _checkoutSection(context),
