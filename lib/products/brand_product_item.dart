@@ -29,6 +29,57 @@ class BrandProductItem extends StatelessWidget {
                         color: Colors.grey, offset: Offset(2, 2), blurRadius: 2)
                   ]),
             )),
+            FittedBox(
+              child: Container(
+                margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).backgroundColor,
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0)),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(5.0, 5.0),
+                          blurRadius: 10.0)
+                    ]),
+                width: 160,
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.name,
+                        maxLines: 4,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      FittedBox(
+                        child: Text('US ${product.price} \$',
+                            maxLines: 1,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 30.0,
+                            )),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Text(product.category,
+                          style: const TextStyle(
+                              color: Colors.grey, fontSize: 18.0)),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                    ]),
+              ),
+            )
           ],
         ),
       ),
