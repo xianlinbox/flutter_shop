@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/cart/cart.dart';
+import 'package:flutter_shop/cart/cart_screen.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/products/brand_products.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/products/products.dart';
 import 'package:flutter_shop/provider/brands_provider.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/screens/bottom_bar.dart';
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => themeChangeProvider),
           ChangeNotifierProvider(create: (_) => ProductsProvider()),
           ChangeNotifierProvider(create: (_) => BrandProvider()),
+          ChangeNotifierProvider(create: (_) => CartProvider()),
         ],
         child: Consumer<DarkThemeProvider>(
           builder: (context, darkThemeProvider, child) {
@@ -55,7 +57,7 @@ class _MyAppState extends State<MyApp> {
               home: const BottomBar(),
               routes: {
                 Feeds.routeName: (context) => const Feeds(),
-                '/cart': (context) => const Cart(),
+                '/cart': (context) => const CartScreen(),
                 '/wishlist': (context) => const Wishlist(),
                 ProductDetail.routeName: (context) => const ProductDetail(),
                 Products.routeName: (context) => const Products(),

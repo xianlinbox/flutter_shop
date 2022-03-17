@@ -1,7 +1,7 @@
-import 'package:flutter_shop/cart/cart_item.dart';
+import 'package:flutter_shop/cart/cart_item_widget.dart';
 
 class Cart {
-  List<CartItem> items = [];
+  List<CartItemWidget> items = [];
 
   Cart(this.items);
 }

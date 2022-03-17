@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/products/product_item.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
@@ -20,7 +21,9 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final product = ModalRoute.of(context)!.settings.arguments as Product;
+
     return Scaffold(
       appBar: _appBar(context),
       body: Stack(children: [
@@ -56,7 +59,9 @@ class _ProductDetailState extends State<ProductDetail> {
                 child: SizedBox(
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  cartProvider.addItem(product);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Colors.redAccent.shade400),

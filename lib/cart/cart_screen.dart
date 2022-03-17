@@ -15,6 +15,8 @@ class CartScreen extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
     List<CartItem> items = cartProvider.items;
 
+    print(items);
+
     return items.isEmpty
         ? const Scaffold(body: CartEmpty())
         : Scaffold(
