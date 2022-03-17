@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/products/models/product.dart';
+import 'package:flutter_shop/products/product_detail.dart';
 import 'package:provider/provider.dart';
 
 class BrandProductItem extends StatelessWidget {
@@ -10,7 +11,10 @@ class BrandProductItem extends StatelessWidget {
     final product = Provider.of<Product>(context);
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, ProductDetail.routeName,
+            arguments: product);
+      },
       child: Container(
         padding: const EdgeInsets.only(left: 5.0, right: 5.0),
         margin: const EdgeInsets.only(right: 20.0, bottom: 5, top: 18),
