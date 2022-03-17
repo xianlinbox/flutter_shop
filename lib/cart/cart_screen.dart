@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart_empty.dart';
-import 'package:flutter_shop/cart/cart_item.dart';
+import 'package:flutter_shop/cart/cart_item_widget.dart';
+import 'package:flutter_shop/cart/models/cart_item.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
-import 'package:flutter_shop/products/models/product.dart';
+import 'package:provider/provider.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = [];
+    final cartProvider = Provider.of<CartProvider>(context);
+    List<CartItem> items = cartProvider.items;
 
-    return products.isEmpty
+    return items.isEmpty
         ? const Scaffold(body: CartEmpty())
         : Scaffold(
-            appBar: AppBar(title: Text("Cart(${products.length})"), actions: [
+            appBar: AppBar(title: Text("Cart(${items.length})"), actions: [
               IconButton(
                 icon: Icon(AppIcons.delete),
                 onPressed: () {},
@@ -25,7 +28,7 @@ class Cart extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 60),
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return const CartItem();
+                  return const CartItemWidget();
                 },
                 itemCount: 6,
               ),

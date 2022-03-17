@@ -4,14 +4,14 @@ import 'package:flutter_shop/shared/colors.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:provider/provider.dart';
 
-class CartItem extends StatefulWidget {
-  const CartItem({Key? key}) : super(key: key);
+class CartItemWidget extends StatefulWidget {
+  const CartItemWidget({Key? key}) : super(key: key);
 
   @override
-  _CartItemState createState() => _CartItemState();
+  _CartItemWidgetState createState() => _CartItemWidgetState();
 }
 
-class _CartItemState extends State<CartItem> {
+class _CartItemWidgetState extends State<CartItemWidget> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
