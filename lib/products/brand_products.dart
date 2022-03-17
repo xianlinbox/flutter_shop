@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/products/brand_product_item.dart';
 import 'package:flutter_shop/products/models/product_filter.dart';
 import 'package:flutter_shop/provider/brands_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
@@ -15,7 +16,7 @@ class BrandProducts extends StatefulWidget {
 }
 
 class _BrandProductsState extends State<BrandProducts> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,8 @@ class _BrandProductsState extends State<BrandProducts> {
                   ])),
             ));
           }),
-          _contentSpace(context, 'all')
+          _contentSpace(context,
+              _selectedIndex == 0 ? 'all' : _brands[_selectedIndex - 1].name),
         ],
       ),
     );
@@ -102,26 +104,35 @@ class _BrandProductsState extends State<BrandProducts> {
         child: Padding(
       padding: const EdgeInsets.fromLTRB(24, 8, 0, 0),
       child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                AppIcons.database,
-                size: 80,
+        context: context,
+        removeTop: true,
+        child: products.isEmpty
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    AppIcons.database,
+                    size: 80,
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const Text(
+                    'No products related to this brand',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                ],
+              )
+            : ListView.builder(
+                itemCount: products.length,
+                itemBuilder: (context, index) => ChangeNotifierProvider.value(
+                  value: products[index],
+                  child: const BrandProductItem(),
+                ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'No products related to this brand',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-              ),
-            ],
-          )),
+      ),
     ));
   }
 }

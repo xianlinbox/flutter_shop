@@ -12,7 +12,8 @@ class ProductFilter {
   isFiltered(Product product) {
     switch (key) {
       case 'brand':
-        return product.brand.toLowerCase() == value.toLowerCase();
+        return value.toLowerCase() == 'all' ||
+            product.brand.toLowerCase() == value.toLowerCase();
       case 'category':
         return product.category.toLowerCase() == value.toLowerCase();
       case 'all':
