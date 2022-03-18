@@ -16,4 +16,8 @@ class CartProvider with ChangeNotifier {
     return _cartItems.fold(
         0.00, (double total, item) => total + item.totalPrice);
   }
+
+  bool inCart(Product product) {
+    return _cartItems.any((item) => item.product.id == product.id);
+  }
 }

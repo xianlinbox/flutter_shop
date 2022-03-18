@@ -59,18 +59,20 @@ class _ProductDetailState extends State<ProductDetail> {
                 child: SizedBox(
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  cartProvider.addItem(product);
-                },
+                onPressed: cartProvider.inCart(product)
+                    ? () {}
+                    : () {
+                        cartProvider.addItem(product);
+                      },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Colors.redAccent.shade400),
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                       const RoundedRectangleBorder(side: BorderSide.none)),
                 ),
-                child: const Text(
-                  'Add to Cart',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                child: Text(
+                  cartProvider.inCart(product) ? 'In Cart' : 'Add to Cart',
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             )),
