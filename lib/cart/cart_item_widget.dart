@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/models/cart_item.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:fluttericon/entypo_icons.dart';
@@ -17,6 +19,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     final cartItem = Provider.of<CartItem>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return InkWell(
       child: Container(
@@ -119,6 +122,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         borderRadius: BorderRadius.circular(32.0),
                         onTap: () {
                           cartItem.minus(1);
+                          cartProvider.updateTotalPrice();
                         },
                         child: const SizedBox(
                           child: Icon(
@@ -154,6 +158,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         borderRadius: BorderRadius.circular(32.0),
                         onTap: () {
                           cartItem.add(1);
+                          cartProvider.updateTotalPrice();
                         },
                         child: const SizedBox(
                           child: Icon(
