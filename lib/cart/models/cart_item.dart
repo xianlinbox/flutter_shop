@@ -7,7 +7,7 @@ class CartItem extends ChangeNotifier {
 
   CartItem(this.quanity, this.product);
 
-  get totalPrice => product.price * quanity;
+  double get totalPrice => product.price * quanity;
 
   void minus(int i) {
     quanity -= i;

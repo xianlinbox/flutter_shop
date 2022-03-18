@@ -35,11 +35,11 @@ class CartScreen extends StatelessWidget {
                 itemCount: items.length,
               ),
             ),
-            bottomSheet: _checkoutSection(context),
+            bottomSheet: _checkoutSection(context, cartProvider),
           );
   }
 
-  Widget _checkoutSection(BuildContext context) {
+  Widget _checkoutSection(BuildContext context, CartProvider cartProvider) {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class CartScreen extends StatelessWidget {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor)),
               Text(
-                "\$0.00",
+                "\$ ${cartProvider.totalAmount}",
                 style: TextStyle(fontSize: 18, color: AppColors.purple800),
               ),
             ],

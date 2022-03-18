@@ -11,4 +11,9 @@ class CartProvider with ChangeNotifier {
     _cartItems.add(CartItem(1, product));
     notifyListeners();
   }
+
+  double get totalAmount {
+    return _cartItems.fold(
+        0.00, (double total, item) => total + item.totalPrice);
+  }
 }
