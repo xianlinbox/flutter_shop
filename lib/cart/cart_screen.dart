@@ -8,6 +8,8 @@ import 'package:flutter_shop/shared/colors.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
+  static String routeName = '/cart';
+
   const CartScreen({Key? key}) : super(key: key);
 
   @override

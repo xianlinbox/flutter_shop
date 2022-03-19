@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
               home: const BottomBar(),
               routes: {
                 Feeds.routeName: (context) => const Feeds(),
-                '/cart': (context) => const CartScreen(),
+                CartScreen.routeName: (context) => const CartScreen(),
                 '/wishlist': (context) => const Wishlist(),
                 ProductDetail.routeName: (context) => const ProductDetail(),
                 Products.routeName: (context) => const Products(),

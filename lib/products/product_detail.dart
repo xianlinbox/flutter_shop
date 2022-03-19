@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/cart/cart_screen.dart';
 import 'package:flutter_shop/products/product_item.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
@@ -139,7 +140,9 @@ class _ProductDetailState extends State<ProductDetail> {
         IconButton(
           icon: Icon(AppIcons.cart),
           color: AppColors.cartColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, CartScreen.routeName);
+          },
         ),
       ],
     );
