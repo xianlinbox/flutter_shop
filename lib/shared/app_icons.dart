@@ -17,4 +17,6 @@ class AppIcons {
   static IconData wishlist = FontAwesome5.heart;
   static IconData upload = FontAwesome5.upload;
   static IconData database = FontAwesome5.database;
+
+  static IconData alert = FontAwesome5.exclamation_circle;
 }

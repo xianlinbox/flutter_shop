@@ -27,4 +27,10 @@ class CartProvider with ChangeNotifier {
   bool inCart(Product product) {
     return _cartItems.any((item) => item.product.id == product.id);
   }
+
+  void deleteItem(CartItem cartItem) {
+    _cartItems.remove(cartItem);
+    updateTotalPrice();
+    notifyListeners();
+  }
 }

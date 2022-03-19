@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/models/cart_item.dart';
-import 'package:flutter_shop/provider/cart_provider.dart';
+import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
     final cartProvider = Provider.of<CartProvider>(context);
 
     return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ProductDetail.routeName,
+            arguments: cartItem.product);
+      },
       child: Container(
         height: 140,
         margin: const EdgeInsets.all(10),
@@ -63,7 +68,13 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(32.0),
-                          onTap: () {},
+                          onTap: () {
+                            AppDialog.showAppDialog(context, "Delete Item",
+                                "Do you really want to delete this product?",
+                                () {
+                              cartProvider.deleteItem(cartItem);
+                            });
+                          },
                           child: const SizedBox(
                             height: 50,
                             width: 50,
