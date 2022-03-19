@@ -48,48 +48,56 @@ class CartScreen extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         border: const Border(top: BorderSide(color: Colors.grey, width: 1)),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 100,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: LinearGradient(
-                    colors: [AppColors.gradiendLStart, AppColors.gradiendLEnd],
-                    stops: const [0.0, 1.0])),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(30),
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Checkout',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor)),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: LinearGradient(colors: [
+                    AppColors.gradiendLStart,
+                    AppColors.gradiendLEnd
+                  ], stops: const [
+                    0.0,
+                    1.0
+                  ])),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text('Checkout',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor)),
+                  ),
                 ),
               ),
             ),
-          ),
-          Row(
-            children: [
-              Text("Total: ",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor)),
-              Text(
-                "\$ ${cartProvider.totalAmount}",
-                style: TextStyle(fontSize: 18, color: AppColors.purple800),
-              ),
-            ],
-          ),
-        ],
+            Row(
+              children: [
+                Text("Total: ",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor)),
+                Text(
+                  "\$ ${cartProvider.totalAmount}",
+                  style: TextStyle(fontSize: 18, color: AppColors.purple800),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -55,67 +55,71 @@ class _ProductDetailState extends State<ProductDetail> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Row(children: [
-            Expanded(
-                child: SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: cartProvider.inCart(product)
-                    ? () {}
-                    : () {
-                        cartProvider.addItem(product);
-                      },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.redAccent.shade400),
-                  shape: MaterialStateProperty.all<OutlinedBorder>(
-                      const RoundedRectangleBorder(side: BorderSide.none)),
-                ),
-                child: Text(
-                  cartProvider.inCart(product) ? 'In Cart' : 'Add to Cart',
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ),
-            )),
-            Expanded(
-                child: SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Theme.of(context).backgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(children: [
+              Expanded(
+                  child: SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: cartProvider.inCart(product)
+                      ? () {}
+                      : () {
+                          cartProvider.addItem(product);
+                        },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.redAccent.shade400),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                        const RoundedRectangleBorder(side: BorderSide.none)),
                   ),
-                  shape: MaterialStateProperty.all<OutlinedBorder>(
-                      const RoundedRectangleBorder(side: BorderSide.none)),
+                  child: Text(
+                    cartProvider.inCart(product) ? 'In Cart' : 'Add to Cart',
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
-                child: Text(
-                  'Buy Now',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+              )),
+              Expanded(
+                  child: SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Theme.of(context).backgroundColor,
+                    ),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                        const RoundedRectangleBorder(side: BorderSide.none)),
+                  ),
+                  child: Text(
+                    'Buy Now',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
+                  ),
                 ),
-              ),
-            )),
-            Expanded(
-                child: SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(AppColors.subTitle),
-                  shape: MaterialStateProperty.all<OutlinedBorder>(
-                      const RoundedRectangleBorder(side: BorderSide.none)),
+              )),
+              Expanded(
+                  child: SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(AppColors.subTitle),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                        const RoundedRectangleBorder(side: BorderSide.none)),
+                  ),
+                  child: const Text(
+                    'Add to Wishlist',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
-                child: const Text(
-                  'Add to Wishlist',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ),
-            )),
-          ]),
+              )),
+            ]),
+          ),
         )
       ]),
     );
