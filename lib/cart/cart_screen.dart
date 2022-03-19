@@ -3,6 +3,7 @@ import 'package:flutter_shop/cart/cart_empty.dart';
 import 'package:flutter_shop/cart/cart_item_widget.dart';
 import 'package:flutter_shop/cart/models/cart_item.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
+import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:provider/provider.dart';
@@ -18,12 +19,20 @@ class CartScreen extends StatelessWidget {
     List<CartItem> items = cartProvider.items;
 
     return items.isEmpty
-        ? const Scaffold(body: CartEmpty())
+        ? Scaffold(
+            appBar: AppBar(title: const Text("Cart")),
+            body: const CartEmpty(),
+          )
         : Scaffold(
             appBar: AppBar(title: Text("Cart(${items.length})"), actions: [
               IconButton(
                 icon: Icon(AppIcons.delete),
-                onPressed: () {},
+                onPressed: () {
+                  AppDialog.showAppDialog(context, "Delete All",
+                      "Do you really want to remove all the products?", () {
+                    cartProvider.clear();
+                  });
+                },
               ),
             ]),
             body: Container(

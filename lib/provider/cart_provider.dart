@@ -33,4 +33,10 @@ class CartProvider with ChangeNotifier {
     updateTotalPrice();
     notifyListeners();
   }
+
+  void clear() {
+    _cartItems.clear();
+    updateTotalPrice();
+    notifyListeners();
+  }
 }
