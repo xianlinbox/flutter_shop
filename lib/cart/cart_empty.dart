@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
+import 'package:flutter_shop/screens/bottom_bar.dart';
 
 class CartEmpty extends StatelessWidget {
   const CartEmpty({Key? key}) : super(key: key);
@@ -57,7 +58,13 @@ class CartEmpty extends StatelessWidget {
         height: MediaQuery.of(context).size.width * 0.15,
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed('/');
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => const BottomBar(),
+              ),
+              (route) => false,
+            );
           },
           style: ElevatedButton.styleFrom(
             side: const BorderSide(color: Colors.red),
