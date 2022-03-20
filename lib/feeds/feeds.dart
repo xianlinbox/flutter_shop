@@ -14,6 +14,7 @@ class Feeds extends StatelessWidget {
     final List<Product> _products = productsProvider.products;
 
     return Scaffold(
+      appBar: AppBar(title: const Text('Feeds')),
       body: Center(
         child: GridView.count(
           crossAxisCount: 2,
