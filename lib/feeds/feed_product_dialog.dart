@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/products/models/product.dart';
+import 'package:flutter_shop/products/product_detail.dart';
+import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -10,6 +12,7 @@ class FeedProductDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     final product = Provider.of<Product>(context);
     return Dialog(
       shape: RoundedRectangleBorder(
@@ -35,9 +38,18 @@ class FeedProductDialog extends StatelessWidget {
           Container(
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Row(children: [
-              _dialogButton(context, AppIcons.wishlist, 'Add to wishlist'),
-              _dialogButton(context, AppIcons.view, 'View Details'),
-              _dialogButton(context, AppIcons.cart, 'Add to cart'),
+              _dialogButton(
+                  context, AppIcons.wishlist, 'Add to wishlist', () {}),
+              _dialogButton(context, AppIcons.view, 'View Details', () {
+                Navigator.of(context)
+                    .pushNamed(ProductDetail.routeName, arguments: product);
+              }),
+              _dialogButton(context, AppIcons.cart,
+                  cartProvider.inCart(product) ? 'In Cart' : 'Add to cart', () {
+                if (!cartProvider.inCart(product)) {
+                  cartProvider.addItem(product);
+                }
+              }),
             ]),
           ),
           Container(
@@ -64,13 +76,16 @@ class FeedProductDialog extends StatelessWidget {
     );
   }
 
-  Widget _dialogButton(BuildContext context, IconData icon, String title) {
+  Widget _dialogButton(
+      BuildContext context, IconData icon, String title, Function onTap) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return FittedBox(
       child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              onTap();
+            },
             splashColor: Colors.grey,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.25,
