@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/products/models/product.dart';
+import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/shared/app_icons.dart';
+import 'package:flutter_shop/shared/colors.dart';
 import 'package:provider/provider.dart';
 
 class FeedProductDialog extends StatelessWidget {
@@ -18,15 +21,25 @@ class FeedProductDialog extends StatelessWidget {
           child: Column(
         children: [
           Container(
+            constraints: BoxConstraints(
+                minHeight: 100,
+                maxHeight: MediaQuery.of(context).size.height * 0.5),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
             child: Image.network(
               product.imageUrl,
             ),
           ),
-          Row(children: const [
-            Text("name"),
-            Spacer(),
-            Text("price"),
-          ]),
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Row(children: [
+              _dialogButton(context, AppIcons.wishlist, 'Add to wishlist'),
+              _dialogButton(context, AppIcons.view, 'View Details'),
+              _dialogButton(context, AppIcons.cart, 'Add to cart'),
+            ]),
+          ),
           Container(
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -48,6 +61,67 @@ class FeedProductDialog extends StatelessWidget {
           ),
         ],
       )),
+    );
+  }
+
+  Widget _dialogButton(BuildContext context, IconData icon, String title) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+    return FittedBox(
+      child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            splashColor: Colors.grey,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.25,
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).backgroundColor,
+                      shape: BoxShape.circle,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10.0,
+                          offset: Offset(0.0, 10.0),
+                        ),
+                      ],
+                    ),
+                    child: ClipOval(
+                        child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Icon(
+                        icon,
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        size: 25,
+                      ),
+                    )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: FittedBox(
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          // fontWeight: FontWeight.w800,
+                          fontSize: 15,
+                          color: themeChange.darkTheme
+                              ? Theme.of(context).disabledColor
+                              : AppColors.subTitle,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }
