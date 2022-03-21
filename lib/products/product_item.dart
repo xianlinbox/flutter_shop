@@ -3,6 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter_shop/feeds/feed_product_dialog.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/products/models/product.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatefulWidget {
   const ProductItem({Key? key, required this.product}) : super(key: key);
@@ -71,10 +72,11 @@ class _ProductItemState extends State<ProductItem> {
                             child: InkWell(
                               onTap: () async {
                                 showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      const FeedProductDialog(),
-                                );
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        ChangeNotifierProvider.value(
+                                            value: widget.product,
+                                            child: const FeedProductDialog()));
                               },
                               borderRadius: BorderRadius.circular(16),
                               child: const Icon(Icons.more_horiz,

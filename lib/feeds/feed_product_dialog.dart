@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/products/models/product.dart';
+import 'package:provider/provider.dart';
 
 class FeedProductDialog extends StatelessWidget {
   const FeedProductDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -16,7 +19,8 @@ class FeedProductDialog extends StatelessWidget {
         children: [
           Container(
             child: Image.network(
-                "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842712000"),
+              product.imageUrl,
+            ),
           ),
           Row(children: const [
             Text("name"),
