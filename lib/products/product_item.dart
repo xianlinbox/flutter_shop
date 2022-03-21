@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter_shop/feeds/feed_product_dialog.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/products/models/product.dart';
 
@@ -68,7 +69,13 @@ class _ProductItemState extends State<ProductItem> {
                         Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      const FeedProductDialog(),
+                                );
+                              },
                               borderRadius: BorderRadius.circular(16),
                               child: const Icon(Icons.more_horiz,
                                   color: Colors.grey),
