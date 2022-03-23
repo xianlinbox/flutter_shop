@@ -190,6 +190,32 @@ class _LandingScreenState extends State<LandingScreen>
               ],
             ),
             const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      side: const BorderSide(width: 2, color: Colors.red),
+                    ),
+                    child: const Text('Google +'),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      side:
+                          const BorderSide(width: 2, color: Colors.deepPurple),
+                    ),
+                    child: const Text('Continue as a guest'),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ],
