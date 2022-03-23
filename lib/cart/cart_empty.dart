@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
-import 'package:flutter_shop/screens/bottom_bar.dart';
+import 'package:flutter_shop/screens/app.dart';
 
 class CartEmpty extends StatelessWidget {
   const CartEmpty({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class CartEmpty extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) => const BottomBar(),
+                builder: (BuildContext context) => const App(),
               ),
               (route) => false,
             );

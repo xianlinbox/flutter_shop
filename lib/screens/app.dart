@@ -7,20 +7,21 @@ import 'package:flutter_shop/screens/user_info.dart';
 
 import '../home/home.dart';
 
-class BottomBar extends StatefulWidget {
-  static const routeName = '/bottomBar';
+class App extends StatefulWidget {
+  static const routeName = '/app';
 
-  const BottomBar({Key? key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
-  _BottomBarState createState() => _BottomBarState();
+  _AppState createState() => _AppState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _AppState extends State<App> {
   late List<Map<String, Object>> _pages;
 
   @override
   void initState() {
+    super.initState();
     _pages = [
       {"page": const Home(), "title": "Home"},
       {"page": const Feeds(), "title": "Feeds"},
@@ -28,7 +29,6 @@ class _BottomBarState extends State<BottomBar> {
       {"page": const CartScreen(), "title": "Cart"},
       {"page": const UserInfo(), "title": "Users"}
     ];
-    super.initState();
   }
 
   int _selectedPageIndex = 0;

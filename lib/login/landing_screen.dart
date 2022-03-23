@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 
@@ -162,7 +163,7 @@ class _LandingScreenState extends State<LandingScreen>
                 const SizedBox(width: 10),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Row(
               children: const [
                 Expanded(
@@ -189,9 +190,9 @@ class _LandingScreenState extends State<LandingScreen>
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -204,7 +205,9 @@ class _LandingScreenState extends State<LandingScreen>
                     child: const Text('Google +'),
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).popAndPushNamed(App.routeName);
+                    },
                     style: OutlinedButton.styleFrom(
                       shape: const StadiumBorder(),
                       side:

@@ -9,6 +9,7 @@ import 'package:flutter_shop/provider/brands_provider.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
+import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/wishlist/wishlist.dart';
 import 'package:provider/provider.dart';
 import 'shared/theme_data.dart';
@@ -34,8 +35,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    initCurrentTheme();
     super.initState();
+    initCurrentTheme();
   }
 
   @override
@@ -54,6 +55,7 @@ class _MyAppState extends State<MyApp> {
               theme: Styles.themeData(themeChangeProvider.darkTheme, context),
               home: const LandingScreen(),
               routes: {
+                App.routeName: (context) => const App(),
                 Feeds.routeName: (context) => const Feeds(),
                 CartScreen.routeName: (context) => const CartScreen(),
                 '/wishlist': (context) => const Wishlist(),
