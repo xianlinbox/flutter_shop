@@ -162,6 +162,34 @@ class _LandingScreenState extends State<LandingScreen>
                 const SizedBox(width: 10),
               ],
             ),
+            const SizedBox(height: 30),
+            Row(
+              children: const [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Divider(
+                      thickness: 1.2,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Or continue with',
+                  style: TextStyle(color: Colors.black),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Divider(
+                      thickness: 1.2,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30),
           ],
         ),
       ],
