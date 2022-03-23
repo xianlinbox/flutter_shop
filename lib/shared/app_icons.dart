@@ -20,4 +20,6 @@ class AppIcons {
 
   static IconData alert = FontAwesome5.exclamation_circle;
   static IconData view = FontAwesome5.eye;
+
+  static IconData userPlus = FontAwesome5.user_plus;
 }
