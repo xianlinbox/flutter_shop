@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/login/login_screen.dart';
 import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -93,7 +94,7 @@ class _LandingScreenState extends State<LandingScreen>
           children: [
             Row(
               children: [
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                       style: ButtonStyle(
@@ -105,7 +106,7 @@ class _LandingScreenState extends State<LandingScreen>
                         ),
                       )),
                       onPressed: () {
-                        // Navigator.pushNamed(context, '');
+                        Navigator.pushNamed(context, LoginScreen.routeName);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
