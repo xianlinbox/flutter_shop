@@ -33,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 gradientBegin: Alignment.bottomLeft,
                 gradientEnd: Alignment.topRight,
               ),
-              waveAmplitude: 0,
               size: const Size(
                 double.infinity,
                 double.infinity,
@@ -41,6 +40,31 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 80),
+                height: 120.0,
+                width: 120.0,
+                decoration: BoxDecoration(
+                  //  color: Theme.of(context).backgroundColor,
+                  borderRadius: BorderRadius.circular(20),
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                      'https://365psd.com/images/previews/3b6/small-store-icon-psd-53185.jpg',
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                  shape: BoxShape.rectangle,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
+        )
       ],
     ));
   }
