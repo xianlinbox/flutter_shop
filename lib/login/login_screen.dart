@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
+import 'package:flutter_shop/shared/email_validator.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -13,6 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+  String _emailAddress = '';
+  String _password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       key: const ValueKey('email'),
                       validator: (value) {
-                        return null;
+                        return EmailValidator.isValidEmail(value)
+                            ? null
+                            : 'Please enter a valid email address';
                       },
                       textInputAction: TextInputAction.next,
                       onEditingComplete: () {},
@@ -102,15 +109,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
-                                // _obscureText = !_obscureText;
+                                _obscureText = !_obscureText;
                               });
                             },
-                            child: const Icon(Icons.visibility),
+                            child: Icon(_obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off),
                           ),
                           labelText: 'Password',
                           fillColor: Theme.of(context).backgroundColor),
                       onSaved: (value) {},
-                      obscureText: true,
+                      obscureText: _obscureText,
                     ),
                   ),
                   Align(
