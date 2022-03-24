@@ -17,8 +17,31 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
   final FocusNode _passwordFocusNode = FocusNode();
-  String _emailAddress = '';
-  String _password = '';
+  String? _emailAddress = '';
+  String? _password = '';
+  bool _isLoading = false;
+
+  void _submit() {
+    FocusScope.of(context).unfocus();
+    final isValid = _formKey.currentState?.validate();
+    if (isValid == true) {
+      _formKey.currentState?.save();
+      setState(() {
+        _isLoading = true;
+      });
+      Future.delayed(const Duration(seconds: 2), () {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               prefixIcon: const Icon(Icons.email),
                               labelText: 'Email Address',
                               fillColor: Theme.of(context).backgroundColor),
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            _emailAddress = value;
+                          },
                         ),
                       ),
                       Padding(
@@ -125,7 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               labelText: 'Password',
                               fillColor: Theme.of(context).backgroundColor),
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            _password = value;
+                          },
                           obscureText: _obscureText,
                         ),
                       ),
@@ -150,37 +177,37 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           const SizedBox(width: 10),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(
-                                      color: AppColors.backgroundColor),
-                                ),
-                              )),
-                              onPressed: () {
-                                _formKey.currentState?.validate();
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    'Login',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 17),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    AppIcons.user,
-                                    size: 18,
-                                  )
-                                ],
-                              )),
+                          _isLoading
+                              ? const CircularProgressIndicator()
+                              : ElevatedButton(
+                                  style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      side: BorderSide(
+                                          color: AppColors.backgroundColor),
+                                    ),
+                                  )),
+                                  onPressed: _submit,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Login',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 17),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        AppIcons.user,
+                                        size: 18,
+                                      )
+                                    ],
+                                  )),
                           const SizedBox(width: 20),
                         ],
                       ),
