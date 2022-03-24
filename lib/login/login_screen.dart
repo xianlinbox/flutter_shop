@@ -16,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
+  final FocusNode _passwordFocusNode = FocusNode();
   String _emailAddress = '';
   String _password = '';
 
@@ -83,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : 'Please enter a valid email address';
                           },
                           textInputAction: TextInputAction.next,
-                          onEditingComplete: () {},
+                          onEditingComplete: () => FocusScope.of(context)
+                              .requestFocus(_passwordFocusNode),
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                               border: const UnderlineInputBorder(),
@@ -98,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.all(12),
                         child: TextFormField(
                           key: const ValueKey('password'),
+                          focusNode: _passwordFocusNode,
                           validator: (value) {
                             return InputValidator.isValidPassword(value ?? '')
                                 ? null
