@@ -29,7 +29,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void initCurrentTheme() async {
@@ -45,34 +44,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Firebase.initializeApp(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const MaterialApp(
-              home: Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            );
-          } else if (snapshot.hasError) {
-            const MaterialApp(
-              home: Scaffold(
-                body: Center(
-                  child: Text('Error occured'),
-                ),
-              ),
-            );
-          }
-          return MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => themeChangeProvider),
-                ChangeNotifierProvider(create: (_) => ProductsProvider()),
-                ChangeNotifierProvider(create: (_) => BrandProvider()),
-                ChangeNotifierProvider(create: (_) => CartProvider()),
-              ],
-              child: Consumer<DarkThemeProvider>(
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => themeChangeProvider),
+          ChangeNotifierProvider(create: (_) => ProductsProvider()),
+          ChangeNotifierProvider(create: (_) => BrandProvider()),
+          ChangeNotifierProvider(create: (_) => CartProvider()),
+        ],
+        child: FutureBuilder(
+            future: Firebase.initializeApp(),
+            builder: (context, snapshot) {
+              return Consumer<DarkThemeProvider>(
                 builder: (context, darkThemeProvider, child) {
                   return MaterialApp(
                     title: 'Flutter Shop',
@@ -94,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                     },
                   );
                 },
-              ));
-        });
+              );
+            }));
   }
 }
