@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/login/login_screen.dart';
+import 'package:flutter_shop/login/signup_screen.dart';
 import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -141,7 +142,7 @@ class _LandingScreenState extends State<LandingScreen>
                             ),
                           )),
                       onPressed: () {
-                        // Navigator.pushNamed(context, '');
+                        Navigator.pushNamed(context, SignupScreen.routeName);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

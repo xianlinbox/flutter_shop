@@ -4,6 +4,7 @@ import 'package:flutter_shop/cart/cart_screen.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
 import 'package:flutter_shop/login/landing_screen.dart';
 import 'package:flutter_shop/login/login_screen.dart';
+import 'package:flutter_shop/login/signup_screen.dart';
 import 'package:flutter_shop/products/brand_products.dart';
 import 'package:flutter_shop/products/product_detail.dart';
 import 'package:flutter_shop/products/products.dart';
@@ -81,6 +82,7 @@ class _MyAppState extends State<MyApp> {
                     routes: {
                       App.routeName: (context) => const App(),
                       LoginScreen.routeName: (context) => const LoginScreen(),
+                      SignupScreen.routeName: (context) => const SignupScreen(),
                       Feeds.routeName: (context) => const Feeds(),
                       CartScreen.routeName: (context) => const CartScreen(),
                       '/wishlist': (context) => const Wishlist(),
