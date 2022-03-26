@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart_screen.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void initCurrentTheme() async {
@@ -36,37 +38,61 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    super.initState();
     initCurrentTheme();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => themeChangeProvider),
-          ChangeNotifierProvider(create: (_) => ProductsProvider()),
-          ChangeNotifierProvider(create: (_) => BrandProvider()),
-          ChangeNotifierProvider(create: (_) => CartProvider()),
-        ],
-        child: Consumer<DarkThemeProvider>(
-          builder: (context, darkThemeProvider, child) {
-            return MaterialApp(
-              title: 'Flutter Shop',
-              theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-              home: const LandingScreen(),
-              routes: {
-                App.routeName: (context) => const App(),
-                LoginScreen.routeName: (context) => const LoginScreen(),
-                Feeds.routeName: (context) => const Feeds(),
-                CartScreen.routeName: (context) => const CartScreen(),
-                '/wishlist': (context) => const Wishlist(),
-                ProductDetail.routeName: (context) => const ProductDetail(),
-                Products.routeName: (context) => const Products(),
-                BrandProducts.routeName: (context) => const BrandProducts(),
-              },
+    return FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const MaterialApp(
+              home: Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
             );
-          },
-        ));
+          } else if (snapshot.hasError) {
+            const MaterialApp(
+              home: Scaffold(
+                body: Center(
+                  child: Text('Error occured'),
+                ),
+              ),
+            );
+          }
+          return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => themeChangeProvider),
+                ChangeNotifierProvider(create: (_) => ProductsProvider()),
+                ChangeNotifierProvider(create: (_) => BrandProvider()),
+                ChangeNotifierProvider(create: (_) => CartProvider()),
+              ],
+              child: Consumer<DarkThemeProvider>(
+                builder: (context, darkThemeProvider, child) {
+                  return MaterialApp(
+                    title: 'Flutter Shop',
+                    theme: Styles.themeData(
+                        themeChangeProvider.darkTheme, context),
+                    home: const LandingScreen(),
+                    routes: {
+                      App.routeName: (context) => const App(),
+                      LoginScreen.routeName: (context) => const LoginScreen(),
+                      Feeds.routeName: (context) => const Feeds(),
+                      CartScreen.routeName: (context) => const CartScreen(),
+                      '/wishlist': (context) => const Wishlist(),
+                      ProductDetail.routeName: (context) =>
+                          const ProductDetail(),
+                      Products.routeName: (context) => const Products(),
+                      BrandProducts.routeName: (context) =>
+                          const BrandProducts(),
+                    },
+                  );
+                },
+              ));
+        });
   }
 }

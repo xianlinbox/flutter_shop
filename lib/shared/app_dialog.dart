@@ -40,4 +40,35 @@ class AppDialog {
           );
         });
   }
+
+  static void showErrorDialog(
+      BuildContext context, String title, String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    AppIcons.alert,
+                    color: Colors.red,
+                  ),
+                ),
+                Text(title),
+              ],
+            ),
+            content: Text(message),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
 }

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
@@ -14,14 +16,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
   final FocusNode _passwordFocusNode = FocusNode();
-  String? _emailAddress = '';
-  String? _password = '';
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _emailAddress = '';
+  String _password = '';
   bool _isLoading = false;
+  bool _obscureText = true;
 
-  void _submit() {
+  Future<void> _submit() async {
     FocusScope.of(context).unfocus();
     final isValid = _formKey.currentState?.validate();
     if (isValid == true) {
@@ -29,7 +32,16 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _isLoading = true;
       });
-      Future.delayed(const Duration(seconds: 2), () {
+      await _auth
+          .signInWithEmailAndPassword(
+              email: _emailAddress.toLowerCase().trim(),
+              password: _password.trim())
+          .then((value) => {print(value)})
+          .catchError((error) {
+        print(error);
+        AppDialog.showErrorDialog(
+            context, "Whoops", "there is an error happened, please try again.");
+      }).whenComplete(() {
         setState(() {
           _isLoading = false;
         });
@@ -117,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               labelText: 'Email Address',
                               fillColor: Theme.of(context).backgroundColor),
                           onSaved: (value) {
-                            _emailAddress = value;
+                            _emailAddress = value ?? '';
                           },
                         ),
                       ),
@@ -151,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               labelText: 'Password',
                               fillColor: Theme.of(context).backgroundColor),
                           onSaved: (value) {
-                            _password = value;
+                            _password = _emailAddress = value ?? '';
                           },
                           obscureText: _obscureText,
                         ),
