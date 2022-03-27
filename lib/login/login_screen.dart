@@ -62,6 +62,16 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Stack(
       children: [
         WaveBackground.build(context),
+        Positioned(
+            top: 120,
+            left: 120,
+            child: RawMaterialButton(
+                elevation: 10,
+                fillColor: AppColors.gradiendLEnd,
+                child: const Icon(Icons.add_a_photo),
+                padding: const EdgeInsets.all(15.0),
+                shape: const CircleBorder(),
+                onPressed: () {})),
         SingleChildScrollView(
           child: Column(
             children: [
