@@ -4,6 +4,7 @@ import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
+import 'package:flutter_shop/shared/widgets/wave_background.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -60,29 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         body: Stack(
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.95,
-          child: RotatedBox(
-            quarterTurns: 2,
-            child: WaveWidget(
-              config: CustomConfig(
-                gradients: [
-                  [AppColors.gradiendFStart, AppColors.gradiendLStart],
-                  [AppColors.gradiendFEnd, AppColors.gradiendLEnd],
-                ],
-                durations: [19440, 10800],
-                heightPercentages: [0.20, 0.25],
-                blur: const MaskFilter.blur(BlurStyle.solid, 10),
-                gradientBegin: Alignment.bottomLeft,
-                gradientEnd: Alignment.topRight,
-              ),
-              size: const Size(
-                double.infinity,
-                double.infinity,
-              ),
-            ),
-          ),
-        ),
+        WaveBackground.build(context),
         SingleChildScrollView(
           child: Column(
             children: [
