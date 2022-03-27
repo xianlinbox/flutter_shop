@@ -46,7 +46,26 @@ class _SignupScreenState extends State<SignupScreen> {
                               child: const Icon(Icons.add_a_photo),
                               padding: const EdgeInsets.all(15.0),
                               shape: const CircleBorder(),
-                              onPressed: () {})),
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                          'Choose option',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColors.gradiendLStart),
+                                        ),
+                                        content: SingleChildScrollView(
+                                            child: ListBody(
+                                          children: const [
+                                            Text("Take a photo"),
+                                          ],
+                                        )),
+                                      );
+                                    });
+                              })),
                     ],
                   ),
                 ),
