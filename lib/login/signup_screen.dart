@@ -87,6 +87,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                                 )
                                               ]),
                                             ),
+                                            InkWell(
+                                              onTap: _pickImageFromGallery,
+                                              splashColor: Colors.purpleAccent,
+                                              child: Row(children: [
+                                                const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Icon(
+                                                    Icons.image,
+                                                    color: Colors.purpleAccent,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Gallery',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: AppColors.title),
+                                                )
+                                              ]),
+                                            ),
                                           ],
                                         )),
                                       );
@@ -111,6 +132,16 @@ class _SignupScreenState extends State<SignupScreen> {
     final pickedImageFile = pickedImage;
     setState(() {
       _pickedImage = File(pickedImageFile!.path);
+    });
+    Navigator.pop(context);
+  }
+
+  void _pickImageFromGallery() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final pickedImageFile = File(pickedImage!.path);
+    setState(() {
+      _pickedImage = pickedImageFile;
     });
     Navigator.pop(context);
   }
