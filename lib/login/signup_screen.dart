@@ -66,48 +66,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                         content: SingleChildScrollView(
                                             child: ListBody(
                                           children: [
-                                            InkWell(
-                                              onTap: _pickImageFromCamera,
-                                              splashColor: Colors.purpleAccent,
-                                              child: Row(children: [
-                                                const Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Icon(
-                                                    Icons.camera,
-                                                    color: Colors.purpleAccent,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'Camera',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: AppColors.title),
-                                                )
-                                              ]),
-                                            ),
-                                            InkWell(
-                                              onTap: _pickImageFromGallery,
-                                              splashColor: Colors.purpleAccent,
-                                              child: Row(children: [
-                                                const Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Icon(
-                                                    Icons.image,
-                                                    color: Colors.purpleAccent,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'Gallery',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: AppColors.title),
-                                                )
-                                              ]),
-                                            ),
+                                            _optionItem('Camera', Icons.camera,
+                                                _pickImageFromCamera),
+                                            _optionItem('Gallery', Icons.image,
+                                                _pickImageFromGallery),
+                                            _optionItem('Remove',
+                                                Icons.remove_circle, _remove),
                                           ],
                                         )),
                                       );
@@ -124,14 +88,45 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  Widget _optionItem(String title, IconData icon, Function onTap) {
+    return InkWell(
+      onTap: () {
+        onTap();
+      },
+      splashColor: Colors.purpleAccent,
+      child: Row(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(
+            icon,
+            color: Colors.purpleAccent,
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: AppColors.title),
+        )
+      ]),
+    );
+  }
+
   void _pickImageFromCamera() async {
-    print("_pickImageFromCamera");
     final picker = ImagePicker();
     final pickedImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
     final pickedImageFile = pickedImage;
     setState(() {
       _pickedImage = File(pickedImageFile!.path);
+    });
+    Navigator.pop(context);
+  }
+
+  void _remove() {
+    setState(() {
+      _pickedImage = null;
     });
     Navigator.pop(context);
   }
