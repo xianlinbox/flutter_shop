@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/colors.dart';
+import 'package:flutter_shop/shared/input_validator.dart';
 import 'package:flutter_shop/shared/widgets/wave_background.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,6 +16,25 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   File? _pickedImage;
+  final _formKey = GlobalKey<FormState>();
+
+  FocusNode? _emailFocusNode;
+  String? _fullName;
+
+  FocusNode? _passwordFocusNode;
+
+  String? _emailAddress;
+
+  bool _obscureText = true;
+
+  String? _password;
+
+  FocusNode? _phoneNumberFocusNode;
+
+  var _submitForm;
+
+  int? _phoneNumber;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +100,118 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                 ),
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextFormField(
+                            key: const ValueKey('name'),
+                            validator: (value) {
+                              if (InputValidator.isValidEmail(value)) {
+                                return 'name cannot be null';
+                              }
+                              return null;
+                            },
+                            textInputAction: TextInputAction.next,
+                            onEditingComplete: () => FocusScope.of(context)
+                                .requestFocus(_emailFocusNode),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.person),
+                                labelText: 'Full name',
+                                fillColor: Theme.of(context).backgroundColor),
+                            onSaved: (value) {
+                              _fullName = value;
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextFormField(
+                            key: const ValueKey('email'),
+                            focusNode: _emailFocusNode,
+                            validator: (value) {
+                              return null;
+                            },
+                            textInputAction: TextInputAction.next,
+                            onEditingComplete: () => FocusScope.of(context)
+                                .requestFocus(_passwordFocusNode),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.email),
+                                labelText: 'Email Address',
+                                fillColor: Theme.of(context).backgroundColor),
+                            onSaved: (value) {
+                              _emailAddress = value;
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextFormField(
+                            key: const ValueKey('Password'),
+                            validator: (value) {
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            focusNode: _passwordFocusNode,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.lock),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
+                                  },
+                                  child: Icon(_obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                ),
+                                labelText: 'Password',
+                                fillColor: Theme.of(context).backgroundColor),
+                            onSaved: (value) {
+                              _password = value;
+                            },
+                            obscureText: _obscureText,
+                            onEditingComplete: () => FocusScope.of(context)
+                                .requestFocus(_phoneNumberFocusNode),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextFormField(
+                            key: const ValueKey('phone number'),
+                            focusNode: _phoneNumberFocusNode,
+                            validator: (value) {
+                              return null;
+                            },
+                            inputFormatters: [
+                              // FilteringTextInputFormatter.digitsOnly
+                            ],
+                            textInputAction: TextInputAction.next,
+                            onEditingComplete: _submitForm,
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.phone_android),
+                                labelText: 'Phone number',
+                                fillColor: Theme.of(context).backgroundColor),
+                            onSaved: (value) {
+                              _phoneNumber = int.parse(value ?? '0');
+                            },
+                          ),
+                        ),
+                      ],
+                    ))
               ],
             ),
           )
