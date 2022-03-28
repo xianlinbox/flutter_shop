@@ -46,6 +46,7 @@ dependencies:
   wave: ^0.2.0
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.11
+  image_picker: ^0.8.4+11
 
 
 dev_dependencies:

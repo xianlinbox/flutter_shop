@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/widgets/wave_background.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -11,6 +14,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  File? _pickedImage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +38,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: CircleAvatar(
                               radius: 65,
                               backgroundColor: AppColors.gradiendFEnd,
-                              backgroundImage: null),
+                              backgroundImage: _pickedImage == null
+                                  ? null
+                                  : FileImage(_pickedImage!)),
                         ),
                       ),
                       Positioned(
@@ -59,8 +65,28 @@ class _SignupScreenState extends State<SignupScreen> {
                                         ),
                                         content: SingleChildScrollView(
                                             child: ListBody(
-                                          children: const [
-                                            Text("Take a photo"),
+                                          children: [
+                                            InkWell(
+                                              onTap: _pickImageFromCamera,
+                                              splashColor: Colors.purpleAccent,
+                                              child: Row(children: [
+                                                const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Icon(
+                                                    Icons.camera,
+                                                    color: Colors.purpleAccent,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Camera',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: AppColors.title),
+                                                )
+                                              ]),
+                                            ),
                                           ],
                                         )),
                                       );
@@ -75,5 +101,17 @@ class _SignupScreenState extends State<SignupScreen> {
         ],
       ),
     );
+  }
+
+  void _pickImageFromCamera() async {
+    print("_pickImageFromCamera");
+    final picker = ImagePicker();
+    final pickedImage =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
+    final pickedImageFile = pickedImage;
+    setState(() {
+      _pickedImage = File(pickedImageFile!.path);
+    });
+    Navigator.pop(context);
   }
 }
