@@ -4,6 +4,7 @@ import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
+import 'package:flutter_shop/shared/widgets/input_fields.dart';
 import 'package:flutter_shop/shared/widgets/wave_background.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
@@ -88,29 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: TextFormField(
-                          key: const ValueKey('email'),
-                          validator: (value) {
-                            return InputValidator.isValidEmail(value)
-                                ? null
-                                : 'Please enter a valid email address';
-                          },
-                          textInputAction: TextInputAction.next,
-                          onEditingComplete: () => FocusScope.of(context)
-                              .requestFocus(_passwordFocusNode),
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              filled: true,
-                              prefixIcon: const Icon(Icons.email),
-                              labelText: 'Email Address',
-                              fillColor: Theme.of(context).backgroundColor),
-                          onSaved: (value) {
-                            _emailAddress = value ?? '';
-                          },
-                        ),
+                      InputFields.emailField(
+                        context,
+                        (value) => _emailAddress = value,
+                        null,
+                        _passwordFocusNode,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12),

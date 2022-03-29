@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
+import 'package:flutter_shop/shared/widgets/input_fields.dart';
 import 'package:flutter_shop/shared/widgets/wave_background.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -129,28 +130,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             },
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: TextFormField(
-                            key: const ValueKey('email'),
-                            focusNode: _emailFocusNode,
-                            validator: (value) {
-                              return null;
-                            },
-                            textInputAction: TextInputAction.next,
-                            onEditingComplete: () => FocusScope.of(context)
-                                .requestFocus(_passwordFocusNode),
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
-                                filled: true,
-                                prefixIcon: const Icon(Icons.email),
-                                labelText: 'Email Address',
-                                fillColor: Theme.of(context).backgroundColor),
-                            onSaved: (value) {
-                              _emailAddress = value;
-                            },
-                          ),
+                        InputFields.emailField(
+                          context,
+                          (value) => _emailAddress = value,
+                          _emailFocusNode,
+                          _passwordFocusNode,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
