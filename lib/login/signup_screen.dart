@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
       // setState(() {
       //   _isLoading = true;
       // });
-
+      final ref = FirebaseFirestore.instance.collection('users');
     }
   }
 
