@@ -95,40 +95,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         null,
                         _passwordFocusNode,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: TextFormField(
-                          key: const ValueKey('password'),
-                          focusNode: _passwordFocusNode,
-                          validator: (value) {
-                            return InputValidator.isValidPassword(value ?? '')
-                                ? null
-                                : 'Please enter a valid password';
-                          },
-                          textInputAction: TextInputAction.next,
-                          onEditingComplete: () {},
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              filled: true,
-                              prefixIcon: const Icon(Icons.lock),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                child: Icon(_obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                              ),
-                              labelText: 'Password',
-                              fillColor: Theme.of(context).backgroundColor),
-                          onSaved: (value) {
-                            _password = _emailAddress = value ?? '';
-                          },
-                          obscureText: _obscureText,
-                        ),
+                      InputFields.passwordField(
+                        context,
+                        (value) => _password = value,
+                        _passwordFocusNode,
+                        null,
+                        _obscureText,
+                        () => setState(() {
+                          _obscureText = !_obscureText;
+                        }),
                       ),
                       Align(
                         alignment: Alignment.topRight,

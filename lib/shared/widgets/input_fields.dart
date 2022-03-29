@@ -33,4 +33,46 @@ class InputFields {
       ),
     );
   }
+
+  static Widget passwordField(
+    BuildContext context,
+    Function onSaved,
+    FocusNode? focusNode,
+    FocusNode? nextNode,
+    bool _obscureText,
+    Function onTap,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: TextFormField(
+        key: const ValueKey('password'),
+        focusNode: focusNode,
+        validator: (value) {
+          return InputValidator.isValidPassword(value ?? '')
+              ? null
+              : 'Please enter a valid password';
+        },
+        textInputAction: TextInputAction.next,
+        onEditingComplete: () {},
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            filled: true,
+            prefixIcon: const Icon(Icons.lock),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                onTap();
+              },
+              child:
+                  Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+            ),
+            labelText: 'Password',
+            fillColor: Theme.of(context).backgroundColor),
+        onSaved: (value) {
+          onSaved(value);
+        },
+        obscureText: _obscureText,
+      ),
+    );
+  }
 }

@@ -136,38 +136,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           _emailFocusNode,
                           _passwordFocusNode,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: TextFormField(
-                            key: const ValueKey('Password'),
-                            validator: (value) {
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            focusNode: _passwordFocusNode,
-                            decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
-                                filled: true,
-                                prefixIcon: const Icon(Icons.lock),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      _obscureText = !_obscureText;
-                                    });
-                                  },
-                                  child: Icon(_obscureText
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
-                                ),
-                                labelText: 'Password',
-                                fillColor: Theme.of(context).backgroundColor),
-                            onSaved: (value) {
-                              _password = value;
-                            },
-                            obscureText: _obscureText,
-                            onEditingComplete: () => FocusScope.of(context)
-                                .requestFocus(_phoneNumberFocusNode),
-                          ),
+                        InputFields.passwordField(
+                          context,
+                          (value) => _password = value,
+                          _passwordFocusNode,
+                          null,
+                          _obscureText,
+                          () => setState(() {
+                            _obscureText = !_obscureText;
+                          }),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
