@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
 import 'package:flutter_shop/shared/widgets/input_fields.dart';
@@ -35,6 +37,8 @@ class _SignupScreenState extends State<SignupScreen> {
   var _submitForm;
 
   int? _phoneNumber;
+
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +159,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               return null;
                             },
                             inputFormatters: [
-                              // FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly
                             ],
                             textInputAction: TextInputAction.next,
                             onEditingComplete: _submitForm,
@@ -167,10 +171,45 @@ class _SignupScreenState extends State<SignupScreen> {
                                 labelText: 'Phone number',
                                 fillColor: Theme.of(context).backgroundColor),
                             onSaved: (value) {
-                              _phoneNumber = int.parse(value ?? '0');
+                              _phoneNumber = int.parse(value ?? '1234567890');
                             },
                           ),
                         ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const SizedBox(width: 10),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      side: BorderSide(
+                                          color: AppColors.backgroundColor),
+                                    ),
+                                  )),
+                                  onPressed: () {},
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Sign up',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 17),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        AppIcons.user,
+                                        size: 18,
+                                      )
+                                    ],
+                                  )),
+                              const SizedBox(width: 20),
+                            ]),
                       ],
                     ))
               ],
