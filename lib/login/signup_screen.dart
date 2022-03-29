@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
@@ -18,27 +19,32 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  File? _pickedImage;
   final _formKey = GlobalKey<FormState>();
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   FocusNode? _emailFocusNode;
-  String? _fullName;
-
   FocusNode? _passwordFocusNode;
-
-  String? _emailAddress;
-
-  bool _obscureText = true;
-
-  String? _password;
-
   FocusNode? _phoneNumberFocusNode;
 
-  var _submitForm;
+  File? _pickedImage;
+  String? _fullName;
+  String? _emailAddress;
+  String? _password;
+  String? _phoneNumber;
 
-  int? _phoneNumber;
-
+  bool _obscureText = true;
   bool _isLoading = false;
+
+  void _submitForm() {
+    final isValid = _formKey.currentState?.validate();
+    FocusScope.of(context).unfocus();
+    if (isValid == true) {
+      _formKey.currentState?.save();
+      // setState(() {
+      //   _isLoading = true;
+      // });
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +177,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 labelText: 'Phone number',
                                 fillColor: Theme.of(context).backgroundColor),
                             onSaved: (value) {
-                              _phoneNumber = int.parse(value ?? '1234567890');
+                              _phoneNumber = value;
                             },
                           ),
                         ),
@@ -189,7 +195,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           color: AppColors.backgroundColor),
                                     ),
                                   )),
-                                  onPressed: () {},
+                                  onPressed: _submitForm,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
