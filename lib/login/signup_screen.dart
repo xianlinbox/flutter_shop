@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
 import 'package:flutter_shop/shared/input_validator.dart';
@@ -35,15 +37,53 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureText = true;
   bool _isLoading = false;
 
-  void _submitForm() {
+  void _submitForm() async {
     final isValid = _formKey.currentState?.validate();
     FocusScope.of(context).unfocus();
     if (isValid == true) {
-      _formKey.currentState?.save();
-      // setState(() {
-      //   _isLoading = true;
-      // });
-      final ref = FirebaseFirestore.instance.collection('users');
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('uploads/users/$_fullName.jpg');
+        if (_pickedImage != null) {
+          await storageRef.putFile(_pickedImage!);
+        }
+        final photoUrl = await storageRef.getDownloadURL();
+
+        await _auth.createUserWithEmailAndPassword(
+            email: _emailAddress!.toLowerCase().trim(),
+            password: _password!.trim());
+
+        final user = _auth.currentUser;
+        user?.updatePhotoURL(photoUrl);
+        user?.updateDisplayName(_fullName!.trim());
+        user?.reload();
+
+        final _uid = user?.uid;
+        if (_uid != null) {
+          final users = FirebaseFirestore.instance.collection('users');
+          users.add({
+            'id': _uid,
+            'fullName': _fullName,
+            'emailAddress': _emailAddress,
+            'password': _password,
+            'phoneNumber': _phoneNumber,
+            'image': photoUrl,
+          });
+        }
+
+        Navigator.canPop(context) ? Navigator.pop(context) : null;
+      } catch (error) {
+        AppDialog.showErrorDialog(context, "Whoops", error.toString());
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -186,35 +226,39 @@ class _SignupScreenState extends State<SignupScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               const SizedBox(width: 10),
-                              ElevatedButton(
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      side: BorderSide(
-                                          color: AppColors.backgroundColor),
-                                    ),
-                                  )),
-                                  onPressed: _submitForm,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        'Sign up',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 17),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Icon(
-                                        AppIcons.user,
-                                        size: 18,
-                                      )
-                                    ],
-                                  )),
+                              _isLoading
+                                  ? const CircularProgressIndicator()
+                                  : ElevatedButton(
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                          side: BorderSide(
+                                              color: AppColors.backgroundColor),
+                                        ),
+                                      )),
+                                      onPressed: _submitForm,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Sign up',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 17),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Icon(
+                                            AppIcons.user,
+                                            size: 18,
+                                          )
+                                        ],
+                                      )),
                               const SizedBox(width: 20),
                             ]),
                       ],
