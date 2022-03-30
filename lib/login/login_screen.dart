@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
-import 'package:flutter_shop/shared/input_validator.dart';
 import 'package:flutter_shop/shared/widgets/input_fields.dart';
 import 'package:flutter_shop/shared/widgets/wave_background.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,9 +36,9 @@ class _LoginScreenState extends State<LoginScreen> {
           .signInWithEmailAndPassword(
               email: _emailAddress.toLowerCase().trim(),
               password: _password.trim())
-          .then((value) => {print(value)})
-          .catchError((error) {
-        print(error);
+          .then((value) {
+        Navigator.of(context).popAndPushNamed(App.routeName);
+      }).catchError((error) {
         AppDialog.showErrorDialog(
             context, "Whoops", "there is an error happened, please try again.");
       }).whenComplete(() {
