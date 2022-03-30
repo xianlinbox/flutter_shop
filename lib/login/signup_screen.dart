@@ -41,6 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
     final isValid = _formKey.currentState?.validate();
     FocusScope.of(context).unfocus();
     if (isValid == true) {
+      _formKey.currentState?.save();
       try {
         setState(() {
           _isLoading = true;
@@ -48,21 +49,25 @@ class _SignupScreenState extends State<SignupScreen> {
 
         final storageRef = FirebaseStorage.instance
             .ref()
-            .child('uploads/users/$_fullName.jpg');
+            .child('user_images')
+            .child('$_fullName.jpg');
+
+        print('$_fullName');
         if (_pickedImage != null) {
           await storageRef.putFile(_pickedImage!);
         }
+        print("2");
         final photoUrl = await storageRef.getDownloadURL();
-
+        print("23");
         await _auth.createUserWithEmailAndPassword(
             email: _emailAddress!.toLowerCase().trim(),
             password: _password!.trim());
-
+        print("4");
         final user = _auth.currentUser;
         user?.updatePhotoURL(photoUrl);
         user?.updateDisplayName(_fullName!.trim());
         user?.reload();
-
+        print("5");
         final _uid = user?.uid;
         if (_uid != null) {
           final users = FirebaseFirestore.instance.collection('users');
@@ -75,7 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
             'image': photoUrl,
           });
         }
-
+        print("6");
         Navigator.canPop(context) ? Navigator.pop(context) : null;
       } catch (error) {
         AppDialog.showErrorDialog(context, "Whoops", error.toString());
