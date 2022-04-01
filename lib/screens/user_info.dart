@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -14,6 +15,7 @@ class UserInfo extends StatefulWidget {
 
 class UserInfoState extends State<UserInfo> {
   late ScrollController _scrollViewController;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -159,19 +161,6 @@ class UserInfoState extends State<UserInfo> {
         userListTile('Phone Number', '3124589888', AppIcons.phone, context),
         userListTile(
             'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
-        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
-        title('User Info'),
-        userListTile('Email', 'empty', AppIcons.email, context),
-        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
-        userListTile(
-            'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
-        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
-        title('User Info'),
-        userListTile('Email', 'empty', AppIcons.email, context),
-        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
-        userListTile(
-            'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
-        userListTile('Join Date', 'Dec 12 2021', AppIcons.date, context),
         title('User Settings'),
         userListTileSwitch(
             'Dark Mode', themeChange.darkTheme, AppIcons.darkMode, (value) {
@@ -179,6 +168,54 @@ class UserInfoState extends State<UserInfo> {
             themeChange.darkTheme = value;
           });
         }),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: Theme.of(context).splashColor,
+            child: ListTile(
+              onTap: () async {
+                // Navigator.canPop(context)? Navigator.pop(context):null;
+                showDialog(
+                    context: context,
+                    builder: (BuildContext ctx) {
+                      return AlertDialog(
+                        title: Row(
+                          children: [
+                            Padding(
+                                padding: const EdgeInsets.only(right: 6.0),
+                                child: Icon(AppIcons.alert, color: Colors.red)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('Sign out'),
+                            ),
+                          ],
+                        ),
+                        content: const Text('Do you wanna Sign out?'),
+                        actions: [
+                          TextButton(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Cancel')),
+                          TextButton(
+                              onPressed: () async {
+                                await _auth
+                                    .signOut()
+                                    .then((value) => Navigator.pop(context));
+                              },
+                              child: const Text(
+                                'Ok',
+                                style: TextStyle(color: Colors.red),
+                              ))
+                        ],
+                      );
+                    });
+              },
+              title: const Text('Logout'),
+              leading: Icon(AppIcons.logout),
+            ),
+          ),
+        ),
       ],
     );
   }

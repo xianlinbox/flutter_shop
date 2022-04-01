@@ -22,4 +22,5 @@ class AppIcons {
   static IconData view = FontAwesome5.eye;
 
   static IconData userPlus = FontAwesome5.user_plus;
+  static IconData logout = FontAwesome5.sign_out_alt;
 }
