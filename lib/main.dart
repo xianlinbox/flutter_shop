@@ -55,6 +55,23 @@ class _MyAppState extends State<MyApp> {
         child: FutureBuilder(
             future: Firebase.initializeApp(),
             builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const MaterialApp(
+                  home: Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                const MaterialApp(
+                  home: Scaffold(
+                    body: Center(
+                      child: Text('Error occured'),
+                    ),
+                  ),
+                );
+              }
               return Consumer<DarkThemeProvider>(
                 builder: (context, darkThemeProvider, child) {
                   return MaterialApp(
