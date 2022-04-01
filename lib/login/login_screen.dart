@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               email: _emailAddress.toLowerCase().trim(),
               password: _password.trim())
           .then((value) {
-        Navigator.of(context).popAndPushNamed(App.routeName);
+        Navigator.of(context).pop();
       }).catchError((error) {
         AppDialog.showErrorDialog(
             context, "Whoops", "there is an error happened, please try again.");

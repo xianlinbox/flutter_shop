@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/login/login_screen.dart';
 import 'package:flutter_shop/login/signup_screen.dart';
 import 'package:flutter_shop/screens/app.dart';
+import 'package:flutter_shop/screens/main.dart';
 import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
@@ -20,7 +21,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen>
     with TickerProviderStateMixin {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -58,21 +59,21 @@ class _LandingScreenState extends State<LandingScreen>
       final googleAuth = await googleAccount.authentication;
       if (googleAuth.accessToken != null && googleAuth.idToken != null) {
         try {
-          final authResult = await _auth.signInWithCredential(
-              GoogleAuthProvider.credential(
-                  idToken: googleAuth.idToken,
-                  accessToken: googleAuth.accessToken));
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(authResult.user?.uid)
-              .set({
-            'id': authResult.user?.uid,
-            'name': authResult.user?.displayName,
-            'email': authResult.user?.email,
-            'phoneNumber': authResult.user?.phoneNumber,
-            'imageUrl': authResult.user?.photoURL,
-            'createdAt': Timestamp.now()
-          });
+          // final authResult = await _auth.signInWithCredential(
+          //     GoogleAuthProvider.credential(
+          //         idToken: googleAuth.idToken,
+          //         accessToken: googleAuth.accessToken));
+          // await FirebaseFirestore.instance
+          //     .collection('users')
+          //     .doc(authResult.user?.uid)
+          //     .set({
+          //   'id': authResult.user?.uid,
+          //   'name': authResult.user?.displayName,
+          //   'email': authResult.user?.email,
+          //   'phoneNumber': authResult.user?.phoneNumber,
+          //   'imageUrl': authResult.user?.photoURL,
+          //   'createdAt': Timestamp.now()
+          // });
         } catch (error) {
           AppDialog.showErrorDialog(context, "Whoops", error.toString());
         }
@@ -244,7 +245,7 @@ class _LandingScreenState extends State<LandingScreen>
                   ),
                   OutlinedButton(
                     onPressed: () {
-                      Navigator.of(context).popAndPushNamed(App.routeName);
+                      Navigator.of(context).popAndPushNamed(Main.routeName);
                     },
                     style: OutlinedButton.styleFrom(
                       shape: const StadiumBorder(),

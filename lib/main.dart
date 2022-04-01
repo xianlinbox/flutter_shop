@@ -13,6 +13,7 @@ import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/products_provider.dart';
 import 'package:flutter_shop/screens/app.dart';
+import 'package:flutter_shop/screens/main.dart';
 import 'package:flutter_shop/wishlist/wishlist.dart';
 import 'package:provider/provider.dart';
 import 'shared/theme_data.dart';
@@ -60,9 +61,9 @@ class _MyAppState extends State<MyApp> {
                     title: 'Flutter Shop',
                     theme: Styles.themeData(
                         themeChangeProvider.darkTheme, context),
-                    home: const LandingScreen(),
+                    home: const App(),
                     routes: {
-                      App.routeName: (context) => const App(),
+                      Main.routeName: (context) => const Main(),
                       LoginScreen.routeName: (context) => const LoginScreen(),
                       SignupScreen.routeName: (context) => const SignupScreen(),
                       Feeds.routeName: (context) => const Feeds(),
