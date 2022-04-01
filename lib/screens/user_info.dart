@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
@@ -16,6 +17,10 @@ class UserInfo extends StatefulWidget {
 class UserInfoState extends State<UserInfo> {
   late ScrollController _scrollViewController;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _name = 'Guest';
+  String _email = '';
+  String _userImageUrl = '';
+  String _phoneNumber = '';
 
   @override
   void initState() {
@@ -24,6 +29,7 @@ class UserInfoState extends State<UserInfo> {
       setState(() {});
     });
     super.initState();
+    _loadUserInfo();
   }
 
   @override
@@ -157,8 +163,8 @@ class UserInfoState extends State<UserInfo> {
           context,
         ),
         title('User Info'),
-        userListTile('Email', 'empty', AppIcons.email, context),
-        userListTile('Phone Number', '3124589888', AppIcons.phone, context),
+        userListTile('Email', _email, AppIcons.email, context),
+        userListTile('Phone Number', _phoneNumber, AppIcons.phone, context),
         userListTile(
             'Shipping Address', '123 Ave, Tx', AppIcons.shipping, context),
         title('User Settings'),
@@ -282,5 +288,23 @@ class UserInfoState extends State<UserInfo> {
       switchType: SwitchType.cupertino,
       title: Text(title),
     );
+  }
+
+  void _loadUserInfo() async {
+    User? user = _auth.currentUser;
+    print(user);
+    if (user != null) {
+      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      print(userDoc);
+      setState(() {
+        _name = userDoc.get('fullName');
+        _email = user.email!;
+        _phoneNumber = userDoc.get('phoneNumber');
+        _userImageUrl = userDoc.get('image');
+      });
+    }
   }
 }

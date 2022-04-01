@@ -65,8 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
         user?.reload();
         final _uid = user?.uid;
         if (_uid != null) {
-          final users = FirebaseFirestore.instance.collection('users');
-          users.add({
+          await FirebaseFirestore.instance.collection('users').doc(_uid).set({
             'id': _uid,
             'fullName': _fullName,
             'emailAddress': _emailAddress,
