@@ -85,22 +85,24 @@ class UserInfoState extends State<UserInfo> {
                     BoxShadow(color: AppColors.white, blurRadius: 1.0),
                   ],
                   shape: BoxShape.circle,
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'),
+                  image: DecorationImage(
+                    image: NetworkImage(_userImageUrl == ''
+                        ? 'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'
+                        : _userImageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-              Text('Guest',
+              Text(_name,
                   style: TextStyle(fontSize: 20, color: AppColors.white)),
             ],
           ),
         ),
-        background: const Image(
-            image: NetworkImage(
-                'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'),
+        background: Image(
+            image: NetworkImage(_userImageUrl == ''
+                ? 'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'
+                : _userImageUrl),
             fit: BoxFit.fill),
       ),
     );
@@ -292,13 +294,11 @@ class UserInfoState extends State<UserInfo> {
 
   void _loadUserInfo() async {
     User? user = _auth.currentUser;
-    print(user);
     if (user != null) {
       final DocumentSnapshot userDoc = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .get();
-      print(userDoc);
       setState(() {
         _name = userDoc.get('fullName');
         _email = user.email!;
