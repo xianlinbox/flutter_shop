@@ -49,6 +49,7 @@ class FeedProductDialog extends StatelessWidget {
                 if (!cartProvider.inCart(product)) {
                   cartProvider.addItem(product);
                 }
+                Navigator.canPop(context) ? Navigator.pop(context) : null;
               }),
             ]),
           ),
