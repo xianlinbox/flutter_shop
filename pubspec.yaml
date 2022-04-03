@@ -50,6 +50,9 @@ dependencies:
   cloud_firestore: ^3.1.10
   firebase_storage: ^10.2.9
   google_sign_in: ^5.2.4
+  http: ^0.13.4
+  flutter_credit_card: ^3.0.1
+  flutter_stripe: ^2.4.0
 
 
 dev_dependencies:
