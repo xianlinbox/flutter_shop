@@ -21,9 +21,6 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
-    StripeService.init();
-    // Stripe.publishableKey =
-    //     'pk_test_51KkH1QJAb7q1jP0hFd7voHwQm1rBx7djcfR8TeyNC8EuxRoWe22YIVhbKKwYorv5e5VQMaqgHLwzc9XWId29u49j00T2Nqbrsg';
     super.initState();
   }
 
@@ -92,7 +89,7 @@ class _CartScreenState extends State<CartScreen> {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
                   onTap: () async {
-                    await StripeService.payment();
+                    await StripeService().payment();
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),
