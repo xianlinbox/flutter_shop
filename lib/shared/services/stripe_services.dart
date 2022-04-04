@@ -35,12 +35,13 @@ class StripeService {
     }
   }
 
-  Future<Map<String, dynamic>> _createPaymentIntents() async {
+  Future<Map<String, dynamic>> _createPaymentIntents(
+      int amount, String currency) async {
     const String url = 'https://api.stripe.com/v1/payment_intents';
 
     Map<String, dynamic> body = {
-      'amount': '2000',
-      'currency': 'jpy',
+      'amount': '$amount',
+      'currency': currency,
       'payment_method_types[]': 'card'
     };
 
@@ -62,7 +63,7 @@ class StripeService {
       googlePay: true,
       style: ThemeMode.dark,
       testEnv: true,
-      merchantCountryCode: 'USD',
+      merchantCountryCode: 'US',
       merchantDisplayName: 'Awssome Shop',
       customerId: customerId,
       paymentIntentClientSecret: paymentIntentClientSecret,
@@ -71,10 +72,11 @@ class StripeService {
     await Stripe.instance.presentPaymentSheet();
   }
 
-  Future<void> payment() async {
+  Future<void> payment(double amount, String currency) async {
     init();
+    int amountInCent = (amount * 100).round();
     final _customer = await _createCustomer();
-    final _paymentIntent = await _createPaymentIntents();
+    final _paymentIntent = await _createPaymentIntents(amountInCent, currency);
     await _createCreditCard(_customer['id'], _paymentIntent['client_secret']);
   }
 }

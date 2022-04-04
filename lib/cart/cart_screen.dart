@@ -89,7 +89,8 @@ class _CartScreenState extends State<CartScreen> {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
                   onTap: () async {
-                    await StripeService().payment();
+                    await StripeService()
+                        .payment(cartProvider.totalAmount, 'USD');
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),
