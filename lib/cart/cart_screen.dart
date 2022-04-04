@@ -6,12 +6,26 @@ import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
 import 'package:flutter_shop/shared/colors.dart';
+import 'package:flutter_shop/shared/services/stripe_services.dart';
 import 'package:provider/provider.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static String routeName = '/cart';
 
   const CartScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    StripeService.init();
+    // Stripe.publishableKey =
+    //     'pk_test_51KkH1QJAb7q1jP0hFd7voHwQm1rBx7djcfR8TeyNC8EuxRoWe22YIVhbKKwYorv5e5VQMaqgHLwzc9XWId29u49j00T2Nqbrsg';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +91,9 @@ class CartScreen extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () {},
+                  onTap: () async {
+                    await StripeService.payment();
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text('Checkout',
