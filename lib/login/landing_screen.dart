@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/login/login_screen.dart';
 import 'package:flutter_shop/login/signup_screen.dart';
-import 'package:flutter_shop/screens/app.dart';
 import 'package:flutter_shop/screens/main.dart';
 import 'package:flutter_shop/shared/app_dialog.dart';
 import 'package:flutter_shop/shared/app_icons.dart';
@@ -55,7 +52,6 @@ class _LandingScreenState extends State<LandingScreen>
     final googleAccount = await _googleSignIn.signIn();
 
     if (googleAccount != null) {
-      print(googleAccount);
       final googleAuth = await googleAccount.authentication;
       if (googleAuth.accessToken != null && googleAuth.idToken != null) {
         try {
