@@ -1,0 +1,9 @@
+name: Awesome Shop
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a $ event."
+      - run: flutter test
+      
