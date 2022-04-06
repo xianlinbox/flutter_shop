@@ -17,10 +17,8 @@ class App extends StatelessWidget {
             );
           } else if (userSnapshot.connectionState == ConnectionState.active) {
             if (userSnapshot.hasData) {
-              print('The user is already logged in');
               return const Main();
             } else {
-              print('The user didn\'t login yet');
               return const LandingScreen();
             }
           } else if (userSnapshot.hasError) {

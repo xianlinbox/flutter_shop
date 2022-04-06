@@ -30,7 +30,6 @@ class StripeService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      print(json.decode(response.body));
       throw 'Failed to register as a customer.';
     }
   }
@@ -50,7 +49,6 @@ class StripeService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      print(json.decode(response.body));
       throw 'Failed to create PaymentIntents.';
     }
   }
