@@ -6,7 +6,7 @@ on:
       - '**/README.md'
 
 jobs:
-  Explore-GitHub-Actions:
+  Unit Test:
     runs-on: ubuntu-latest
     env:
       JAVA_VERSION: "11.0"
