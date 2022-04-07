@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart/cart_screen.dart';
 import 'package:flutter_shop/feeds/feeds.dart';
-import 'package:flutter_shop/login/landing_screen.dart';
 import 'package:flutter_shop/login/login_screen.dart';
 import 'package:flutter_shop/login/signup_screen.dart';
 import 'package:flutter_shop/products/brand_products.dart';
