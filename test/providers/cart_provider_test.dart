@@ -14,5 +14,19 @@ void main() {
     test('should get total amount in the cart', () {
       expect(cartProvider.totalAmount, 100.0);
     });
+
+    test('should return true when product is in Cart', () {
+      expect(
+          cartProvider.inCart(Product(
+              "1", "test", "Sports", "Adidas", 100.0, "test", 2, "test", true)),
+          true);
+    });
+
+    test('should return false when product is not in Cart', () {
+      expect(
+          cartProvider.inCart(Product("2", "test", "Sports", "Adidas", 100.0,
+              "test", 2, "test", false)),
+          false);
+    });
   });
 }
